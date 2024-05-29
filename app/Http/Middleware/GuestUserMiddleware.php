@@ -16,8 +16,18 @@ class GuestUserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            return redirect()->route('dashboard'); // Redirect to the dashboard if already logged in
+        // if (Auth::check()) {
+        //     return redirect()->route('dashboard'); // Redirect to the dashboard if already logged in
+        // }
+
+        if (auth()->check()) {
+            $role = auth()->user()->roles;
+    
+            if ($role == 2) {
+                return redirect('/agent');
+            } elseif ($role == 3) {
+                return redirect('/dashboard');
+            }
         }
         
         return $next($request);

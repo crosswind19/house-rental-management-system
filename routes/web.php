@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AgentMiddleware;
 use App\Http\Middleware\GuestUserMiddleware;
-use App\Http\Controllers\UserLoginController; // Add this line
 use App\Http\Middleware\GuestAdminMiddleware;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\UserLoginController; // Add this line
 
 // Route::get('/', function () {
 //     return view('dashboard');
@@ -35,14 +36,19 @@ Route::prefix('/')->group(function(){
         Route::post('/login', [UserLoginController::class, 'login'])->name('login');
     });
     
+    Route::middleware(['auth', UserMiddleware::class])->group(function(){
+    //    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+       Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
+    });
 
-    // Route::middleware(['auth', UserMiddleware::class])->group(function(){
-    //     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-    // });
+    Route::middleware(['auth', AgentMiddleware::class])->group(function(){
+        //    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+           Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
+        });
     
 });
 
-
+//Agent
 
 //Admin
 Route::prefix('admin')->name('admin.')->group(function(){

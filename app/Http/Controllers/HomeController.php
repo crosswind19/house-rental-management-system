@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+    public function agent()
+    {
+        // Logic for the agent page
+        return view('agent.agentDashboard');
+    }
 }

@@ -21,7 +21,13 @@ class UserLoginController extends Controller
         if(Auth::attempt($request->only('email','password'))){
             if(auth()->user()->roles == 3){
                 return redirect()->route('dashboard');
+            }else if(auth()->user()->roles == 2){
+                return redirect()->route('agent');
             }
+
+            // if(auth()->user()->roles == 3){
+            //     return redirect()->route('dashboard');
+            // }
             Auth::logout();
         }
         return back()->withErrors(['email' => 'Wrong credentials']);

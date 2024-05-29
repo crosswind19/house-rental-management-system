@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserMiddleware
+class AgentMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,10 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->check() && auth()->user()->roles == 3){
+        if(auth()->check() && auth()->user()->roles == 2){
             return $next($request);
         }
 
-        
-
         abort(403, 'You do not have permission to access this page.');
-        // return redirect('/');
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('roles')->default(3)->comment('1: Admin | 2: Agent | 3: User');
+            $table->integer('rating');
             $table->rememberToken();
             $table->timestamps();
         });
