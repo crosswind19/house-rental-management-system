@@ -28,8 +28,6 @@ class PropertyController extends Controller
             // Optional: Handle other roles or unauthorized access
             abort(403, 'Unauthorized action.');
         }
-
-
         // $properties = Property::all();
         // return view('properties.dashboard', compact('properties'));
     }
