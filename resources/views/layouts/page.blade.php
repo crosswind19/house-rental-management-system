@@ -71,16 +71,20 @@
                                   </ul>
                               </li>
                               
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ route('properties.index')}}">Properties</a>
+                            </li>
                                   
-                              <li class="nav-item dropdown ">
-                                  <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                                  <ul class="dropdown-menu" aria-labelledby="blogDropdown">
-                                      <li><a href="./pages/blog.html" class="dropdown-item">Blog</a></li>
-                                      <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
-                                      <li><a href="./pages/blog-category.html" class="dropdown-item">Category</a></li>
-                                      <li><a href="./pages/blog-single.html" class="dropdown-item">Single</a></li>
-                                  </ul>
-                              </li>
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ route('properties.index') }}" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Property Type</a>
+                                <ul class="dropdown-menu" aria-labelledby="blogDropdown">
+                                    <li><a href="./pages/blog.html" class="dropdown-item">Apartment</a></li>
+                                    <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
+                                    <li><a href="./pages/blog-category.html" class="dropdown-item">Category</a></li>
+                                    <li><a href="./pages/blog-single.html" class="dropdown-item">Single</a></li>
+                                </ul>
+                            </li>
+                            
                               <li class="nav-item">
                                   <a class="nav-link" href="{{ route('dashboard')}}">Dashboard</a>
                               </li>
@@ -90,37 +94,20 @@
                           </ul>
 
                           @if (Auth::check() && (Auth::user()->roles == 3))
-                          
-
-                              <li class="nav-item dropdown list-unstyled me-2">
-                                <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle pe-3" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <span>Welcome, {{ Auth::user()->name }}</span></a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="./index.html">My Profile</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                       @csrf
-                                  </form>
+                                    </form>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                                 </ul>
-                            </li>
-
-                              {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
-                          
                               <a href="{{ route('dashboard')}}" class="btn btn-primary d-none d-lg-block">Dashboard</a>
-
-
-                          
                           @else
-
                           {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
-                          
                           <a href="{{ route('login') }}" class="btn btn-primary d-none d-lg-block">Login</a>
-
-
-                          
                           @endif 
-
-                          
                       </div>
                   </nav>
               </div>
@@ -129,15 +116,6 @@
   </div>
 
   <!-- main wrapper -->
-
-  <div class="d-flex flex-wrap w-100">
-    <div class="flex-1" style="min-width: 0;">
-      <!-- hero image -->
-      <div class="w-100">
-        <div class="position-relative d-flex pt-lg-6 flex-column min-vh-xl-100">
-          @if(Route::is('home'))
-          <span class="position-absolute top-0 end-0 bottom-0 start-0 background-cover" style="background-image: url('assets/images/hero-img-one.jpg');"></span>
-          @endif
 
         @yield('content')
        <!-- footer  -->
