@@ -23,15 +23,20 @@ class PropertyController extends Controller
         } elseif ($user->roles == 3) {
             // User: Display properties based on the user's ID
             $properties = Property::where('user_id', $user->id)->get();
-            return view('property', compact('properties'));
+            return view('properties.dashboard', compact('properties'));
         } else {
             // Optional: Handle other roles or unauthorized access
             abort(403, 'Unauthorized action.');
         }
-
-
         // $properties = Property::all();
         // return view('properties.dashboard', compact('properties'));
+    }
+
+    public function properties()
+    {
+        // $user = auth()->user();
+        $properties = Property::all();
+            return view('property', compact('properties'));
     }
 
     public function create()

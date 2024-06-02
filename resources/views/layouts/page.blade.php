@@ -15,20 +15,20 @@
 
   <!-- Libs CSS -->
 
-  <link href="./assets/libs/magnific-popup/dist/magnific-popup.css" rel="stylesheet" />
-  <link href="./assets/libs/animate.css/animate.min.css" rel="stylesheet">
-  <link href="./assets/libs/nouislider/dist/nouislider.min.css" rel="stylesheet">
-  <link href="./assets/libs/uppy/dist/uppy.min.css" rel="stylesheet">
-  <link href="./assets/libs/litepicker/dist/css/litepicker.css" rel="stylesheet">
-  <link href="./assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="./assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
-  <link href="./assets/libs/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/libs/magnific-popup/dist/magnific-popup.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/libs/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/libs/nouislider/dist/nouislider.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/libs/uppy/dist/uppy.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/libs/litepicker/dist/css/litepicker.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
 
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
-  <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  {{-- <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet"> --}}
   <title>Homepage - Rentkit - Directory & Listings Bootstrap 5 Template.</title>
 </head>
 
@@ -56,9 +56,7 @@
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul class="navbar-nav me-auto ms-lg-3">
                               <li class="nav-item dropdown ">
-                                  <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Home
-                  </a>
+                                  <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
                                   <ul class="dropdown-menu">
                                       <li><a class="dropdown-item" href="./index.html">Classic</a></li>
                                       <li><a class="dropdown-item" href="./pages/modern.html">Modern</a></li>
@@ -66,21 +64,25 @@
                                       <li><a class="dropdown-item" href="./pages/real-estate.html">Real Estate <span class="badge bg-primary">New</span></a></li>
                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>
+                                      </form>
                                       <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                                   </ul>
                               </li>
                               
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ route('properties')}}">Properties</a>
+                            </li>
                                   
-                              <li class="nav-item dropdown ">
-                                  <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                                  <ul class="dropdown-menu" aria-labelledby="blogDropdown">
-                                      <li><a href="./pages/blog.html" class="dropdown-item">Blog</a></li>
-                                      <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
-                                      <li><a href="./pages/blog-category.html" class="dropdown-item">Category</a></li>
-                                      <li><a href="./pages/blog-single.html" class="dropdown-item">Single</a></li>
-                                  </ul>
-                              </li>
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ route('properties.index') }}" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Property Type</a>
+                                <ul class="dropdown-menu" aria-labelledby="blogDropdown">
+                                    <li><a href="./pages/blog.html" class="dropdown-item">Apartment</a></li>
+                                    <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
+                                    <li><a href="./pages/blog-category.html" class="dropdown-item">Category</a></li>
+                                    <li><a href="./pages/blog-single.html" class="dropdown-item">Single</a></li>
+                                </ul>
+                            </li>
+                            
                               <li class="nav-item">
                                   <a class="nav-link" href="{{ route('dashboard')}}">Dashboard</a>
                               </li>
@@ -90,37 +92,20 @@
                           </ul>
 
                           @if (Auth::check() && (Auth::user()->roles == 3))
-                          
-
-                              <li class="nav-item dropdown list-unstyled me-2">
-                                <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle pe-3" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <span>Welcome, {{ Auth::user()->name }}</span></a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="./index.html">My Profile</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                       @csrf
-                                  </form>
+                                    </form>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                                 </ul>
-                            </li>
-
-                              {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
-                          
                               <a href="{{ route('dashboard')}}" class="btn btn-primary d-none d-lg-block">Dashboard</a>
-
-
-                          
                           @else
-
                           {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
-                          
                           <a href="{{ route('login') }}" class="btn btn-primary d-none d-lg-block">Login</a>
-
-
-                          
                           @endif 
-
-                          
                       </div>
                   </nav>
               </div>
@@ -129,15 +114,6 @@
   </div>
 
   <!-- main wrapper -->
-
-  <div class="d-flex flex-wrap w-100">
-    <div class="flex-1" style="min-width: 0;">
-      <!-- hero image -->
-      <div class="w-100">
-        <div class="position-relative d-flex pt-lg-6 flex-column min-vh-xl-100">
-          @if(Route::is('home'))
-          <span class="position-absolute top-0 end-0 bottom-0 start-0 background-cover" style="background-image: url('assets/images/hero-img-one.jpg');"></span>
-          @endif
 
         @yield('content')
        <!-- footer  -->
@@ -235,26 +211,26 @@
   </div>
     <!-- scripts  -->
   <!-- Libs JS -->
-  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="./assets/libs/select2/dist/js/select2.full.min.js"></script>
-  <script src="./assets/libs/select2/dist/js/select2.min.js"></script>
-  <script src="./assets/libs/jquery-raty-js/lib/jquery.raty.js"></script>
-  <script src="./assets/libs/quill/dist/quill.min.js"></script>
-  <script src="./assets/libs/uppy/dist/uppy.min.js"></script>
-  <script src="./assets/libs/litepicker/dist/litepicker.js"></script>
-  <script src="./assets/libs/prismjs/prism.js"></script>
-  <script src="./assets/libs/leaflet/dist/leaflet.js"></script>
-  <script src="./assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-  <script src="./assets/libs/nouislider/dist/nouislider.min.js"></script>
-  <script src="./assets/libs/wnumb/wNumb.min.js"></script>
-  <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
-  <script src="./assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/select2/dist/js/select2.full.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/jquery-raty-js/lib/jquery.raty.js')}}"></script>
+    <script src="{{ asset('assets/libs/quill/dist/quill.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/uppy/dist/uppy.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/litepicker/dist/litepicker.js')}}"></script>
+    <script src="{{ asset('assets/libs/prismjs/prism.js')}}"></script>
+    <script src="{{ asset('assets/libs/leaflet/dist/leaflet.js')}}"></script>
+    <script src="{{ asset('assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/nouislider/dist/nouislider.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/wnumb/wNumb.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
 
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
 
   <!-- Theme JS -->
-  <script src="./assets/js/theme.min.js"></script>
+  <script src="{{ asset('assets/js/theme.min.js')}}"></script>
