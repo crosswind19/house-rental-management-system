@@ -44,4 +44,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Define the relationship with the Property model
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
 }

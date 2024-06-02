@@ -26,7 +26,9 @@ class GuestUserMiddleware
             if ($role == 2) {
                 return redirect('/agent');
             } elseif ($role == 3) {
-                return redirect('/dashboard');
+                return redirect('/home');
+            } elseif($role == 1){
+                return redirect('admin/home');
             }
         }
         

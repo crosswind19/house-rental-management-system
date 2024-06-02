@@ -27,7 +27,8 @@
 
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="./assets/css/theme.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+  <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
   <title>Homepage - Rentkit - Directory & Listings Bootstrap 5 Template.</title>
 </head>
 
@@ -36,12 +37,17 @@
 
   <!-- navbar -->
   <!-- navbar -->
+  @if(Route::is('home'))
   <div class="nav-header nav-header-classic menu-space header-position header-white">
+  @else
+  <div class="nav-header nav-header-classic menu-space header-position header-dark">
+  @endif
+  
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
                   <nav class="navbar navbar-expand-lg">
-                      <a class="navbar-brand" href="./index.html"> <img src="./assets/images/logo.svg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"></a>
+                      <a class="navbar-brand" href="{{route('home')}}"> <img src="./assets/images/logo.svg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"></a>
                       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -64,125 +70,10 @@
                                       <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                                   </ul>
                               </li>
-                              <li class="nav-item dropdown menu_list">
-                                  <a class="nav-link dropdown-toggle" href="#" id="navbarExplore" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Explore
-                  </a>
-                                  <div class="dropdown-menu w-100 p-0" aria-labelledby="navbarExplore">
-                                      <div class="row g-0">
-                                          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 d-xl-block d-lg-block d-md-none d-none">
-                                              <div class="dropdown-img " style="background-image: url(./assets/images/dropdown-img.jpg);">
-                                                  <div class="dropdown-img-caption">
-                                                      <h2 class="text-white mb-1">Want Experience on Rentkit ?</h2>
-                                                      <p class="mb-4">Experience a level of our quality in both design &amp; customization works.
-                                                      </p>
-                                                      <a href="./pages/add-listing.html" class="btn btn-primary">
                               
-                            </a>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="col-12 col-md-12 col-lg-6">
-                                              <div class="row m-3 m-lg-6">
-                                                  <div class="col-md-3">
-                                                      <h5 class="mb-2 text-uppercase h6 text-primary fw-bold">Listing</h5>
-                                                      <ul class="list-unstyled">
-                                                          <li><a class="dropdown-item" href="./pages/listing-list-view.html">
-                                  Listing View</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/listing-grid-view.html">
-                                  Grid View</a>
-                                                          </li>
-                                                          <li>
-                                                              <a class="dropdown-item" href="./pages/list-with-map.html">
-                                  List With Map</a>
-                                                          </li>
-                                                          <li>
-                                                              <a class="dropdown-item" href="./pages/grid-with-map.html">
-                                  Grid With Map</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/listing-category.html">
-                                  Listing Category</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/list-single.html">
-                                  Listing Single</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/add-listing.html">
-                                  Add Listing</a>
-                                                          </li>
-
-                                                      </ul>
-                                                  </div>
-
-                                                  <div class="col-md-3">
-                                                      <h5 class="mb-2 text-uppercase h6 text-primary fw-bold">Other Pages</h5>
-                                                      <ul class="mega-menu-list list-unstyled">
-                                                          <li><a class="dropdown-item" href="./pages/about.html">
-                                About us</a>
-                                                          </li>
-                                                          <li>
-                                                              <a class="dropdown-item" href="./pages/contact-us.html">
-                                Contact</a>
-                                                          </li>
-
-                                                          <li><a class="dropdown-item" href="./pages/faq.html">
-                                  Faq</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/pricing.html">
-                                  Pricing</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/checkout-page.html">
-                                Checkout</a>
-                                                          </li>
-
-                                                          <li><a class="dropdown-item" href="./pages/coming-soon.html">
-                                Coming Soon</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/404-error.html">
-                                  404 Error</a>
-                                                          </li>
-                                                      </ul>
-                                                  </div>
-                                                  <div class="col-md-3">
-                                                      <h5 class="mb-2 text-uppercase h6 text-primary fw-bold">Author</h5>
-                                                      <ul class="list-unstyled">
-                                                          <li><a class="dropdown-item" href="./pages/author-list.html">
-                                  List</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/author-reviews.html">
-                                  Reviews</a>
-                                                          </li>
-                                                          <li>
-                                                              <a class="dropdown-item" href="./pages/author-favourite.html">
-                                  Favourite</a>
-                                                          </li>
-
-                                                      </ul>
-                                                  </div>
-                                                  <div class="col-md-3">
-                                                      <h5 class="mb-2 text-uppercase h6 text-primary fw-bold">Account</h5>
-                                                      <ul class="mega-menu-list list-unstyled">
-                                                          <li><a class="dropdown-item" href="./pages/signin.html">
-                                  Login</a>
-                                                          </li>
-                                                          <li><a class="dropdown-item" href="./pages/signup.html">
-                                  Register</a>
-                                                          </li>
-                                                          <li>
-                                                              <a class="dropdown-item" href="./pages/forget-password.html">
-                                  Forgot Password</a>
-                                                          </li>
-                                                      </ul>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </li>
+                                  
                               <li class="nav-item dropdown ">
-                                  <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Blog
-                  </a>
+                                  <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                                   <ul class="dropdown-menu" aria-labelledby="blogDropdown">
                                       <li><a href="./pages/blog.html" class="dropdown-item">Blog</a></li>
                                       <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
@@ -191,7 +82,7 @@
                                   </ul>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link" href="./pages/dashboard/overview.html">Dashboard</a>
+                                  <a class="nav-link" href="{{ route('dashboard')}}">Dashboard</a>
                               </li>
                               <li class="nav-item">
                                   <a class="nav-link" href="./docs/index.html">Docs</a>
@@ -213,17 +104,15 @@
                                 </ul>
                             </li>
 
-                              
-
-                              <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a>
+                              {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
                           
-                              <a href="./pages/add-listing.html" class="btn btn-primary d-none d-lg-block">Dashboard</a>
+                              <a href="{{ route('dashboard')}}" class="btn btn-primary d-none d-lg-block">Dashboard</a>
 
 
                           
                           @else
 
-                          <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a>
+                          {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
                           
                           <a href="{{ route('login') }}" class="btn btn-primary d-none d-lg-block">Login</a>
 
@@ -246,8 +135,9 @@
       <!-- hero image -->
       <div class="w-100">
         <div class="position-relative d-flex pt-lg-6 flex-column min-vh-xl-100">
-          <span class="position-absolute top-0 end-0 bottom-0 start-0" style=" background-size: cover;
-    background-position: 50%; background-image: url(assets/images/hero-img-one.jpg);">
+          @if(Route::is('home'))
+          <span class="position-absolute top-0 end-0 bottom-0 start-0 background-cover" style="background-image: url('assets/images/hero-img-one.jpg');"></span>
+          @endif
 
         @yield('content')
        <!-- footer  -->

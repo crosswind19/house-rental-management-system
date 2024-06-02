@@ -6,6 +6,7 @@ use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AgentMiddleware;
+use App\Http\Controllers\PropertyController;
 use App\Http\Middleware\GuestUserMiddleware;
 use App\Http\Middleware\GuestAdminMiddleware;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -22,33 +23,28 @@ use App\Http\Controllers\UserLoginController; // Add this line
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 //User
-
-Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('/')->group(function(){
 
     Route::middleware([GuestUserMiddleware::class])->group(function(){ //for users that are not logged in
+        Route::get('/register', [UserLoginController::class, 'registerForm'])->name('registerForm'); 
+        Route::post('/register', [UserLoginController::class, 'register'])->name('register'); 
         Route::get('/login', [UserLoginController::class, 'index']); 
         Route::post('/login', [UserLoginController::class, 'login'])->name('login');
     });
     
     Route::middleware(['auth', UserMiddleware::class])->group(function(){
-    //    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+       Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
        Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
     });
 
+    //Agent
     Route::middleware(['auth', AgentMiddleware::class])->group(function(){
-        //    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
            Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
         });
-    
 });
-
-//Agent
 
 //Admin
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -63,4 +59,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/home', [AdminHomeController::class, 'index'])->name('home'); 
     });
     
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::resource('properties', PropertyController::class);
 });
