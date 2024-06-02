@@ -38,6 +38,7 @@ Route::prefix('/')->group(function(){
     Route::middleware(['auth', UserMiddleware::class])->group(function(){
        Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
        Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
+       Route::get('/property', [PropertyController::class, 'properties'])->name('properties');
     });
 
     //Agent

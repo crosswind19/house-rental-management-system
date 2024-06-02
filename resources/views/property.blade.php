@@ -194,15 +194,6 @@
                                             </div>
                                             @endforeach
                                         @endif
-                                        {{-- <div class="carousel-item active">
-                                            <img src="{{ asset('storage/images/' . $property->photo) }}" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-5.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-6.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div> --}}
                                     </div>
                                     <a class="carousel-control-prev" href="#listcarousel" role="button" data-bs-slide="prev">
                                         <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
