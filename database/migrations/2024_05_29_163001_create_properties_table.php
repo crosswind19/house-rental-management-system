@@ -27,8 +27,8 @@ return new class extends Migration
             $table->integer('bedroom');
             $table->integer('bathroom');
             $table->integer('car_park');
-            $table->decimal('build_up_area', 8, 2);
-            // $table->string('build_up_area');
+            // $table->decimal('build_up_area', 8, 2);
+            $table->string('build_up_area');
             $table->string('furnishing');
             $table->boolean('occupancy')->default(0);
             $table->boolean('availability')->default(0);

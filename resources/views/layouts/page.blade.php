@@ -47,7 +47,7 @@
           <div class="row">
               <div class="col-md-12">
                   <nav class="navbar navbar-expand-lg">
-                      <a class="navbar-brand" href="{{route('home')}}"> <img src="./assets/images/logo.svg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"></a>
+                      <a class="navbar-brand" href="{{route('home')}}"> <img src="{{ asset('assets/images/logo.svg')}}" alt="Rentkit Directory & Listing Bootstrap 5 Theme"></a>
                       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>

@@ -1,470 +1,507 @@
 @extends('layouts.page')
 
 @section('content')
-<div class="pt-8">
-
-</div>
-<div class="py-8 py-lg-8 ">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-6 col-md-8 col-12">
-                <h1 class="display-5 fw-bold mb-2">Listing Grid View</h1>
-                <p class="lead">Explore our all-in-one rental platform, where you can find a variety of rental options to suit all your needs, easily accessible in one convenient location.
-                </p>
-                <!-- breadcrumb -->
-                <nav aria-label="breadcrumb" class="mt-5">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active">Listing Grid View</li>
-                    </ol>
-                </nav>
+<!-- listing slide -->
+<div class="container pt-5 mt-5">
+    <div class="ratio ratio-16x9 rounded-3" style="background-image: url('{{ Storage::url(json_decode($property->photo)[0]) }}'); background-size: cover; background-position: center;">        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                <!-- listing badges -->
+                <div class="position-absolute bottom-0 mb-5 ms-5">
+                    <div>
+                        <a href="#" class="btn btn-white btn-sm"> <span class="mdi mdi-heart me-1 text-danger"></span>Save</a>
+                        <a href="#gallery" class="btn btn-white btn-sm">View Photos</a>
+                    </div>
+                </div>
+                <!-- listing badges -->
             </div>
         </div>
     </div>
 </div>
-<!-- content -->
-<div class="pb-lg-11 pb-7">
+<div class="py-6">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-12">
-                <!-- card -->
-                <div class=" position-sticky overflow-hidden h-auto top-0">
-                    <div class="card mb-3">
-                        <h4 class="card-header bg-white px-4 py-3"><span class="text-primary me-2"><i class="mdi mdi-tune"></i></span>Filter
-                        </h4>
-                        <!-- filter widget -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Review Rating</h5>
-                            <div class="mt-3">
-                                <!-- radio -->
-                                <div class="form-check text-primary">
-                                    <input type="radio" id="customRadio1" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio1"><span class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> <span class="mdi mdi-star"></span>
-              <span class="mdi mdi-star "></span></label>
+            <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+                <div class="card mb-4">
+                    <!-- listing detail head -->
+                    <div class="card-body p-4">
+                        <h2 class="mb-2"> {{$property->property_name}} </h2> 
+                        <p class="mb-4 fs-6">{{$property->city}}, {{$property->state}}</p>
+                        <p>{{$property->build_up_area}} SQFT</p>
+                        <div class="text-sm">
+                            <span class="me-2"><i class="mdi mdi-home text-primary"></i><span class="ms-2">{{$property->bedroom}} Bedroom</span></span>
+                            <span class="me-2"><i class="mdi mdi-scale-bathroom text-primary"></i><span class="ms-2">{{$property->bathroom}} Bath</span></span>
+                            <span class="me-2"><i class="mdi mdi-car text-primary"></i><span class="ms-2">{{$property->car_park}} Car Park</span></span>
+                        </div>
+                    </div>
+                    <!-- listing detail head -->
+                </div>
+                <!-- listing detail -->
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <h4>Overview</h4>
+                        <p>Convallis nulla felis id lacus. Nam lectus duiultricies ac augue ultrices mattis pellentesque one neqpulvinar quam turpissit amet suscipit turpis elementum in.auris laoreet porttitor lacus non rhoncusulla congue augue at
+                            sagittis volutpat, arcu ipsum prpurus.Praesent dictum, arcu eu convallis accumsan, neque turpis convallis elit, nec lacinia neque tortor id mauris. </p>
+                        <p class="mb-0">Phasellus eu leo rhoncus, cursus erat id, volutpat nisl. Proin sed laoreet felis. Aenean sollicitudin dictum augue, non scelerisque nulla cursus vitae. Mauris molestie, tellus sed vehicula ultricies, ex arcu semper nibh,
+                            eu malesuada turpis metus a orci. Pellentesque consequat, tortor sit amet hendrerit ornare, mi erat ultricies eros, placerat auctor lacus erat a tortorefficitur non. Maecenas a molestie lorem. </p>
+                    </div>
+                </div>
+                {{-- <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Amenities</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-group list-unstyled">
+                                    <li class="list-item"><span class="mdi mdi-air-conditioner me-2 text-dark fs-5"></span>Air conditioning
+                                    </li>
+                                    <li class="list-item"><span class="mdi mdi-television-classic me-2 text-dark fs-5"></span>TV
+                                    </li>
+                                    <li class="list-item"><span class="mdi mdi-car-brake-parking me-2 text-dark fs-5"></span>Free parking on premises</li>
+                                    <li class="list-item"><span class="mdi mdi-pool me-2 text-dark  fs-5"></span>Pool</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group list-unstyled">
+                                    <li class="list-item"><span class="mdi mdi-thermometer-lines me-2 text-dark  fs-5"></span>Heating
+                                    </li>
+                                    <li class="list-item"><span class="mdi mdi-toilet me-2 text-dark  fs-5"></span>Toiletteries
+                                    </li>
+                                    <li class="list-item"><span class="mdi mdi-television me-2 text-dark  fs-5"></span>Desk for work
+                                    </li>
+                                    <li class="list-item"><span class="mdi mdi-washing-machine me-2 text-dark  fs-5"></span>Washing machine
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                {{-- review --}}
+                {{-- <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <h4>Reviews</h4>
+                        <div class="row border-bottom mb-5 pb-5 mt-3">
+                            <div class="col-md-2">
+                                <div class="text-lg-center">
+                                    <h2 class="display-5 fw-bold mb-0 lh-1">3.8</h2>
+                                    <p class="mb-0">Reviews</p>
+                                    <p><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span></p>
                                 </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio2" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio2"><span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span>
-            </label>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Atmosphere</span></div>
+                                    <div> <span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span>                                                <span class="review-list-value">0.5</span></div>
                                 </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio3" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio3"><span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> </label>
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Security</span></div>
+                                    <div> <span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span>                                                <span class="review-list-value">0.5</span>
+                                    </div>
                                 </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio4" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio4"><span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span> </label>
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Location</span></div>
+                                    <div><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star-outline text-primary"></span>                                                <span>4.0</span>
+                                    </div>
                                 </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio5" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio5"><span class="mdi mdi-star"></span> </label>
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Facilities</span> </div>
+                                    <div><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star-half text-primary"></span>
+                                        <span>4.5</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Staff</span> </div>
+                                    <div><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span>
+                                        <span>0.5</span></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Cleanliness</span></div>
+                                    <div><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span>
+                                        <span>0.5</span></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div><span>Value of money</span></div>
+                                    <div><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star-outline text-primary"></span>                                                <span>4.0</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- filter widget -->
+                        <div class="row">
+                            <div class="col-md-12 mb-5">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div><img src="../assets/images/avatar-3.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">
+                                            <h5 class="mb-n1">James Duncan</h5>
+                                            <small>30 May, 2021</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div>
+                                            <h5 class="fw-bold mb-2">It was absolutely lovely.</h5>
+                                            <p>Suspendisse potenti. Pellentesque sed elit a augue condimentum varius. Integer porttitor neque quis velit tempor malesuada ersusvelit. Fusce vitae nulla at magna hendrerit rint metus.
+                                            </p>
+                                            <span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span>
 
-                        <div class="card-body p-4 border-bottom">
-                            <h5 class="mb-4"> Pricing </h5>
-                            <div class="price-menu-body mt-6">
-                                <div id="slider-padding"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                        </div>
-                        <!-- filter widget -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Amenities </h5>
-                            <div class="mt-3">
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck1">
-                                    <label class="form-check-label" for="customCheck1">Doorman
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck2">
-                                    <label class="form-check-label" for="customCheck2">Free parking
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck3">
-                                    <label class="form-check-label" for="customCheck3">Heating
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck4">
-                                    <label class="form-check-label" for="customCheck4">Hair dryer
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck5">
-                                    <label class="form-check-label" for="customCheck5">Toiletteries </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck6">
-                                    <label class="form-check-label" for="customCheck6">Pool
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck7">
-                                    <label class="form-check-label" for="customCheck7">Wifi
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck8">
-                                    <label class="form-check-label" for="customCheck8">Washing machine
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck9">
-                                    <label class="form-check-label" for="customCheck9">Indoor fireplace
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck10">
-                                    <label class="form-check-label" for="customCheck10">Desk for work
-            </label>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div><img src="../assets/images/avatar-2.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="avatar-md avatar rounded-circle mb-3">
+                                            <h5 class="mb-n1">Sameera Badami</h5>
+                                            <small>30 May, 2021</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div>
+                                            <h5 class="fw-bold mb-2">Superb Place for stay</h5>
+                                            <p>The place is too good, the staff was very cooperative &responsive at any given time. What I appreciate the most is they arranged our stay in these times of crisis by doing their best in all manner. We
+                                                are very grateful to them for that.
+                                            </p>
+                                            <span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span><span class="mdi mdi-star text-primary"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- filter widget -->
-                        <!-- search -->
+                    </div>
+                    <!-- listing detail -->
+                </div> --}}
+                <!-- listing detail -->
+                <!-- listing detail -->
+                {{-- <div class="card mb-4 ">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Leave Your Review</h4>
+                        <form class="row">
+                            <div class="mb-3 col-6">
+                                <label for="reviewtitle" class="form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="form-control" id="reviewname" aria-describedby="reviewname" placeholder="John Deo" required="">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="reviewemail" class="form-label"> Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control" id="reviewemail" aria-describedby="reviewemail" placeholder="Enter email" required="">
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="reviewtitle" class="form-label">Review Title <span class="text-danger">*</span></label>
+                                <input type="text" name="title" class="form-control" id="reviewtitle" aria-describedby="reviewtitle" placeholder="Write Review Title" required="">
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <h5>Reviews</h5>
+                            </div>
+                            <div class="col-md-5 review-total mb-2">
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Atmosphere</span></div>
+                                    <div><span id="ratingstar1" class="rating-star-img"></span></div>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Security</span></div>
+                                    <div><span id="ratingstar2" class="rating-star-img"></span></div>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Location</span></div>
+                                    <div><span id="ratingstar3" class="rating-star-img"></span></div>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Facilities</span> </div>
+                                    <div><span id="ratingstar4" class="rating-star-img"></span></div>
+                                </div>
+                            </div>
+                            <div class="offset-md-1 col-md-5 review-total">
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Staff</span></div>
+                                    <div><span id="ratingstar5" class="rating-star-img"></span></div>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Cleanliness</span></div>
+                                    <div><span id="ratingstar6" class="rating-star-img"></span></div>
+                                </div>
+                                <div class="d-flex justify-content-between text-sm">
+                                    <div><span>Value of money</span></div>
+                                    <div><span id="ratingstar7" class="rating-star-img"></span></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-12 mt-3">
+                                <label for="reviewdescription" class="form-label">Write Your Experience</label>
+                                <textarea class="form-control" id="reviewdescription" rows="3"></textarea>
+                            </div>
+                            <div class="d-lg-flex justify-content-between align-items-center">
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                                <small class="ms-2"><span class="text-danger">*</span> Required Filed</small>
+                            </div>
+                        </form>
+                    </div>
+                </div> --}}
+                <div class="card mb-4" id="gallery">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Gallery</h4>
+                        <div class="zoom-gallery">
+                            <div class="row">
+                                @if($property->photo)
+                                    @foreach(json_decode($property->photo) as $photo)
+                                        <div class="col-md-4">
+                                            <a href="{{ Storage::url($photo) }}" title="Property Photo">
+                                                <img src="{{ Storage::url($photo) }}" class="img-fluid rounded-3 mb-4" alt="Property Photo">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- video --}}
+                {{-- <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Video</h4>
+                        <div class="d-flex justify-content-center position-relative rounded py-16 border-white border rounded-lg " style="background-image: url(../assets/images/featured-img.jpg);">
+                            <a class="popup-youtube icon-shape rounded-circle icon-xl text-decoration-none bg-white fs-3" href="https://www.youtube.com/watch?v=nb9gtT-BqRc">
+                                <i class="mdi mdi-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-1">Location</h4>
+                        <p>Juana Henery’s place is located in Ahemedabad, Gujarat, India</p>
+                        <div id="detailMap" class="listing-map"></div>
+                    </div>
+                </div>
+                <!-- listing detail -->
+                <!-- listing detail -->
+                <div class="card mb-4 " id="faq">
+                    <div class="card-body p-4">
+                        <h4 class="mb-2">Frequently Ask Question</h4>
+                        <p>Juana Henery’s place is located in Ahemedabad, Gujarat, India</p>
+                        <div class="mb-3">
+                            <h5 class="mb-1">Q. How manyhasellus velfelism pcommodo lacus?</h5>
+                            <p>Suspendisse et risus non metus tincidunt aliquam. Aliquam ornare pellentesque eros necesdere fermentum. Aenean sit amet tellus nec ante dapibus congue at eget leo. </p>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="mb-1">Q. Is there ferum efficitur feliendulla viverante sit ame?</h5>
+                            <p>Phasellus vel felis fringilla pretium purus ucommodo lacuhasellus laoreet imperdiet arcuatesd posuere. Nunc posuere semper velit posuere sodales fringilla pretium. </p>
+                        </div>
+                        <div class="mb-0">
+                            <h5 class="mb-1">Q. Why estibulum tristiqueorcid lobortis tincidun?</h5>
+                            <p>Aliquam efficitur dolor interdum porttitor ultricieaecenas pretium volutpat commodtid dictum ipsumliquam scelerisque fermentum elitvel volutpat quam.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- listing detail -->
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-12 ">
+                <!-- listing detail -->
+                <div>
+                    <!-- listing widget -->
+                    <div class="card mb-4 ">
                         <div class="card-body p-4">
-                            <a href="#" class="btn btn-primary btn-block">Search</a>
+                            <div class="d-flex align-items-center mb-3">
+                                <h3 class="fw-bold">$120</h3><small class="text-muted ms-2">/ night</small>
+                            </div>
+                            <div>
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label">Your Stay</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="dateSelect" placeholder="Select Date" aria-label="Recipient's username">
+                                            <span class="input-group-text bg-transparent"><i
+                      class="mdi mdi-calendar-month-outline"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- select -->
+                                    <select class="select2">
+                <option>Guest</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+                                    <div class="mt-3 d-grid">
+                                        <button class="btn btn-primary " type="button">Check
+                  Availability</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <!-- filter widget -->
+                    </div>
+                    <!-- listing widget -->
+                    <!-- listing widget -->
+                    <div class="card mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="mb-0">Hosted by <span class="mdi mdi-medal text-primary float-right"></span></h5>
+                            <div class="text-center mt-4">
+                                <img src="../assets/images/avatar-3.jpg " alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="rounded-circle avatar avatar-lg mb-2">
+                                <h5 class="mb-0">Juana Henry</h5>
+                                <small>joined in january 2017</small>
+                                <p class="mb-0 mx-5 mt-3">Duis varius finibus felis, a tincidunt sedmauris varius eudeunc aliquet ipsum odio id luctus quam dapibus sem.</p>
+                            </div>
+                        </div>
+                        <div class="border-top card-body p-4 text-center">
+                            <p class="mb-0">Response rate: <span class="text-primary">100%</span></p>
+                            <p>Response time: <span class="text-primary">within an hour</span></p>
+                            <div class="d-grid mx-8">
+                                <a href="#" class="btn btn-dark">Contact Host</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-9 col-md-8  col-12">
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-4 col-8">
-                        <div class="sorting">
-                            <!-- select form -->
-                            <select class="select2">
-            <option selected>Default</option>
-            <option value="1">Most Viewed</option>
-            <option value="2">Newest Listing</option>
-            <option value="3">Older Listing</option>
-          </select>
-                        </div>
-                        <!-- select form -->
-                    </div>
-                    {{-- <div class="col-lg-9 col-md-8 col-4 text-end">
-                        <div>
-                            <a href="listing-list-view.html" class=" icon-shape icon-md  text-primary border rounded-1"><i class="mdi mdi-format-list-bulleted"></i></a>
-                            <a href="listing-grid-view.html" class="active icon-shape icon-md bg-primary text-white border-primary rounded-1"><i class="mdi mdi-view-grid"></i></a>
-                        </div>
-                    </div> --}}
-                </div>
-                <div class="row">
-                    @foreach($properties as $property)
-                    <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <div id="listcarousel" class="carousel slide " data-bs-ride="carousel" data-bs-interval="false">
-                                    <ol class="carousel-indicators">
-                                        <li data-bs-target="#listcarousel" data-bs-slide-to="0" class="active rounded-circle"></li>
-                                        <li data-bs-target="#listcarousel" data-bs-slide-to="1" class="rounded-circle"></li>
-                                        <li data-bs-target="#listcarousel" data-bs-slide-to="2" class="rounded-circle"></li>
-                                    </ol>
-                                    <!-- carousel  -->
-                                    <div class="carousel-inner rounded-3">
-                                        @if($property->photo)
-                                            @foreach(json_decode($property->photo) as $photo)
-                                            <div class="carousel-item active">
-                                                <img src="{{ Storage::url($photo) }}" alt="Property Photo" width="100">
-                                            </div>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                    <a class="carousel-control-prev" href="#listcarousel" role="button" data-bs-slide="prev">
-                                        <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#listcarousel" role="button" data-bs-slide="next">
-                                        <i class="mdi mdi-chevron-right icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Next</span>
-                                    </a>
-                                </div>
-                                <div class="btn-wishlist"></div>
-                                <span class="badge bg-danger position-absolute top-0 ms-3 mt-3 z-1 ">Featured</span>
-                            </div>
-                            <div class="mt-3">
-                                <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">{{ $property->property_name}}</a></h4>
-                                <p class="text-sm font-weight-semi-bold">Udaipur, Rajasthan, India</p>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class="h5">$100</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">5.0</span> (8)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div>
-                    @endforeach
-                    {{-- <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <div id="listcarousel" class="carousel slide " data-bs-ride="carousel" data-bs-interval="false">
-                                    <ol class="carousel-indicators">
-                                        <li data-bs-target="#listcarousel" data-bs-slide-to="0" class="active rounded-circle"></li>
-                                        <li data-bs-target="#listcarousel" data-bs-slide-to="1" class="rounded-circle"></li>
-                                        <li data-bs-target="#listcarousel" data-bs-slide-to="2" class="rounded-circle"></li>
-                                    </ol>
-                                    <!-- carousel  -->
-                                    <div class="carousel-inner rounded-3">
-                                        <div class="carousel-item active">
-                                            <img src="../assets/images/listing-img-4.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-5.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-6.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#listcarousel" role="button" data-bs-slide="prev">
-                                        <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#listcarousel" role="button" data-bs-slide="next">
-                                        <i class="mdi mdi-chevron-right icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Next</span>
-                                    </a>
-                                </div>
-                                <div class="btn-wishlist"></div>
-                                <span class="badge bg-danger position-absolute top-0 ms-3 mt-3 z-1 ">Featured</span>
-                            </div>
-                            <div class="mt-3">
-                                <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">Beautiful Cozy Home</a></h4>
-                                <p class="text-sm font-weight-semi-bold">Udaipur, Rajasthan, India</p>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class="h5">$100</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">5.0</span> (8)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <a href="list-single.html"> <img src="../assets/images/listing-img-2.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 rounded-3"></a>
-                                <div class="btn-wishlist"></div>
-                                <span class="badge bg-warning text-dark position-absolute start-0 ms-3 mt-3">Promoted</span>
-                            </div>
-                            <div class="mt-3">
-                                <div>
-                                    <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">Affordable Long Term Room</a>
-                                    </h4>
-                                    <p class="text-sm font-weight-semi-bold">Daman, Daman and Diu, India</p>
-                                </div>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class=" h5">$250</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">4.9</span> (6)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <div id="listcarouselTwo" class="carousel slide " data-bs-ride="carousel" data-bs-interval="false">
-                                    <ol class="carousel-indicators">
-                                        <li data-bs-target="#listcarouselTwo" data-bs-slide-to="0" class="active rounded-circle"></li>
-                                        <li data-bs-target="#listcarouselTwo" data-bs-slide-to="1" class="rounded-circle"></li>
-                                        <li data-bs-target="#listcarouselTwo" data-bs-slide-to="2" class="rounded-circle"></li>
-                                    </ol>
-                                    <!-- carousel  -->
-                                    <div class="carousel-inner rounded-3">
-                                        <div class="carousel-item active">
-                                            <img src="../assets/images/listing-img-1.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-2.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-3.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#listcarouselTwo" role="button" data-bs-slide="prev">
-                                        <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#listcarouselTwo" role="button" data-bs-slide="next">
-                                        <i class="mdi mdi-chevron-right icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Next</span>
-                                    </a>
-                                </div>
-                                <div class="btn-wishlist"></div>
-                            </div>
-                            <div class="mt-3">
-                                <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">Entire 3 BHK Cozy Apartment</a>
-                                </h4>
-                                <p class="text-sm font-weight-semi-bold">Ahmedabad, Gujarat, India</p>
-
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class=" h5">$180</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">4.7</span> (4)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <a href="list-single.html">
-
-                                    <img src="../assets/images/listing-img-5.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 rounded-3">
-                                </a>
-                                <div class="btn-wishlist"></div>
-
-                            </div>
-                            <div class="mt-3">
-                                <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">Private Room No 4 - Boulevard View</a></h4>
-                                <p class="text-sm font-weight-semi-bold">Jaipur, Rajasthan, India</p>
-
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class="h5">$150</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">5.0</span> (8)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <div id="listcarouselThree" class="carousel slide " data-bs-ride="carousel" data-bs-interval="false">
-                                    <ol class="carousel-indicators">
-                                        <li data-bs-target="#listcarouselThree" data-bs-slide-to="0" class="active rounded-circle"></li>
-                                        <li data-bs-target="#listcarouselThree" data-bs-slide-to="1" class="rounded-circle"></li>
-                                        <li data-bs-target="#listcarouselThree" data-bs-slide-to="2" class="rounded-circle"></li>
-                                    </ol>
-                                    <!-- carousel  -->
-                                    <div class="carousel-inner rounded-3">
-                                        <div class="carousel-item active">
-                                            <img src="../assets/images/listing-img-4.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-5.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="../assets/images/listing-img-6.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#listcarouselThree" role="button" data-bs-slide="prev">
-                                        <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#listcarouselThree" role="button" data-bs-slide="next">
-                                        <i class="mdi mdi-chevron-right icon-shape icon-xs bg-white rounded-circle fs-4"></i>
-                                        <span class="visually-hidden">Next</span>
-                                    </a>
-                                </div>
-                                <div class="btn-wishlist"></div>
-
-                            </div>
-                            <div class="mt-3">
-                                <div>
-                                    <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">Spacious 2 Bed Family Apartments for vacation</a>
-                                    </h4>
-                                    <p class="text-sm font-weight-semi-bold">Ahmedabad, Gujarat, India</p>
-                                </div>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class=" h5">$150</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">4.9</span> (6)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <!-- listing block -->
-                        <div class="mb-6">
-                            <div class="position-relative">
-                                <a href="list-single.html"> <img src="../assets/images/listing-img-3.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 rounded-3"></a>
-                                <div class="btn-wishlist"></div>
-                            </div>
-                            <div class="mt-3">
-                                <h4 class="mb-0 text-truncate"> <a href="list-single.html" class="text-inherit">Ground floor in bungalow; serene & well-connected</a>
-                                </h4>
-                                <p class="text-sm font-weight-semi-bold">Rajkot, Gujarat, India</p>
-
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>
-                                        <span class=" h5">$180</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
-                                    </div>
-                                    <div>
-                                        <span class="mdi mdi-star me-1 text-primary text-sm"></span>
-                                        <span class="font-weight-semi-bold  text-sm"><span class="text-dark">4.7</span> (4)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- listing block -->
-                    </div> --}}
-
-
+                <!-- listing detail -->
+                <div class="d-grid">
+                    <a href="#" class="btn btn-light mb-4"><i class="mdi mdi-flag-variant-outline me-1"></i>Report this
+        listing</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+<div class="pb-lg-12 pb-7 bg-white" id="similarspace">
+    <div class="container">
+        <div class="row">
+            <!-- section heading  -->
+            <div class=" col-md-12 col-12">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-0">Similar Places to Stay</h2>
+                </div>
+            </div>
+            <!-- section heading  -->
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <!-- listing block  -->
+                <div class="mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <div id="listcarouselTwo" class="carousel slide " data-bs-ride="carousel" data-bs-interval="false">
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#listcarouselTwo" data-bs-slide-to="0" class="active rounded-circle"></li>
+                                <li data-bs-target="#listcarouselTwo" data-bs-slide-to="1" class="rounded-circle"></li>
+                                <li data-bs-target="#listcarouselTwo" data-bs-slide-to="2" class="rounded-circle"></li>
+                            </ol>
+                            <div class="carousel-inner rounded-3">
+                                <div class="carousel-item active">
+                                    <img src="../assets/images/listing-img-4.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/listing-img-5.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/listing-img-6.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#listcarouselTwo" role="button" data-bs-slide="prev">
+                                <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#listcarouselTwo" role="button" data-bs-slide="next">
+                                <i class="mdi mdi-chevron-right icon-shape icon-xs bg-white rounded-circle fs-4"></i>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                        <div class="btn-wishlist"></div>
+                        <span class="badge bg-danger position-absolute start-0 ms-3 mt-3 top-0 z-1">Featured</span>
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="mb-0"> <a href="list-single.html" class="text-inherit">Beautiful Cozy
+            Home</a></h4>
+                        <p class="text-sm font-weight-semi-bold">Udaipur, Rajasthan, India</p>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <span class=" h5">$100</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
+                            </div>
+                            <div>
+                                <span class="mdi mdi-star me-1 text-primary text-sm"></span>
+                                <span class="font-weight-semi-bold  text-sm"><span class="text-dark">5.0</span> (8)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- listing block  -->
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- listing block  -->
+                <div class="mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <a href="list-single.html"> <img src="../assets/images/listing-img-2.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 rounded-3"></a>
+                        <div class="btn-wishlist"></div>
+                        <span class="badge bg-info position-absolute start-0 ms-3 mt-3">Promoted</span>
+                    </div>
+                    <div class="mt-3">
+                        <div>
+                            <h4 class="mb-0"> <a href="list-single.html" class="text-inherit">Affordable Long
+              Term Room</a></h4>
+                            <p class="text-sm font-weight-semi-bold">Daman, Daman and Diu, India</p>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <span class=" h5">$250</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
+                            </div>
+                            <div>
+                                <span class="mdi mdi-star me-1 text-primary text-sm"></span>
+                                <span class="font-weight-semi-bold  text-sm"><span class="text-dark">4.9</span> (6)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- listing block  -->
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- listing block  -->
+                <div class="mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <div id="listcarouselThird" class="carousel slide " data-bs-ride="carousel" data-bs-interval="false">
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#listcarouselThird" data-bs-slide-to="0" class="active rounded-circle"></li>
+                                <li data-bs-target="#listcarouselThird" data-bs-slide-to="1" class="rounded-circle"></li>
+                                <li data-bs-target="#listcarouselThird" data-bs-slide-to="2" class="rounded-circle"></li>
+                            </ol>
+                            <div class="carousel-inner rounded-3">
+                                <div class="carousel-item active">
+                                    <img src="../assets/images/listing-img-4.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/listing-img-5.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/listing-img-6.jpg" alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="w-100 ">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#listcarouselThird" role="button" data-bs-slide="prev">
+                                <i class="mdi mdi-chevron-left icon-shape icon-xs bg-white rounded-circle fs-4"></i>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#listcarouselThird" role="button" data-bs-slide="next">
+                                <i class="mdi mdi-chevron-right icon-shape icon-xs bg-white rounded-circle fs-4"></i>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                        <div class="btn-wishlist"></div>
+
+                    </div>
+                    <div class="mt-3">
+
+                        <h4 class="mb-0"> <a href="list-single.html" class="text-inherit">Entire 3 BHK Cozy
+            Apartment</a>
+                        </h4>
+                        <p class="text-sm font-weight-semi-bold">Ahmedabad, Gujarat, India</p>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <span class=" h5">$180</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
+                            </div>
+                            <div>
+                                <span class="mdi mdi-star me-1 text-primary text-sm"></span>
+                                <span class="font-weight-semi-bold  text-sm"><span class="text-dark">4.7</span> (4)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- listing block  -->
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

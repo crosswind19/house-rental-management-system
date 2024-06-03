@@ -36,7 +36,13 @@ class PropertyController extends Controller
     {
         // $user = auth()->user();
         $properties = Property::all();
-            return view('property', compact('properties'));
+            return view('properties', compact('properties'));
+    }
+
+    public function property($id)
+    {
+        $property = Property::findOrFail($id);
+        return view('property', compact('property'));
     }
 
     public function create()
@@ -61,7 +67,7 @@ class PropertyController extends Controller
             'bedroom' => 'required|integer',
             'bathroom' => 'required|integer',
             'car_park' => 'required|integer|min:0|max:10',
-            'build_up_area' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'build_up_area' => ['required', 'integer'],
             'furnishing' => 'required|string|max:255'
         ]);
         $data['user_id'] = $request->user()->id;
