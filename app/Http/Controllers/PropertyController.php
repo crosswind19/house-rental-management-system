@@ -87,7 +87,6 @@ class PropertyController extends Controller
             // Assuming you want to store multiple photo paths as a JSON array
             $data['photo'] = json_encode($photoPaths);
         }
-    //dd($data);
 
     property::create($data);
 
@@ -106,35 +105,50 @@ class PropertyController extends Controller
 
     public function update(Request $request, Property $property)
     {
-        $request->validate([
+        $data = $request->validate([
             'property_name' => 'required|string|max:255',
             'property_type' => 'required|string|max:255',
-            'build_up_area' => 'required|numeric',
+            'description' => 'required',
             'address' => 'required|string|max:255',
-            'zip_code' => 'required|string|max:10',
             'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zipcode' => 'required|string|max:255',
             'country' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'photo' => 'nullable|image',
+            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'photo' => 'nullable',
+            'photo.*' => 'image|mimes:jpeg,png,jpg,webp',
             'bedroom' => 'required|integer',
             'bathroom' => 'required|integer',
-            'car_park' => 'required|boolean',
-            'description' => 'required',
-            'land_area' => 'required|numeric',
-            'furnishing' => 'required|string|max:255',
-            'occupancy' => 'required|boolean',
-            'availability' => 'required|boolean',
+            'car_park' => 'required|integer|min:0|max:10',
+            'build_up_area' => ['required', 'integer'],
+            'furnishing' => 'required|string|max:255'
         ]);
-
-        $property->fill($request->all());
-
+    
+        $data['user_id'] = $request->user()->id;
+        $photoPaths = [];
+    
+        // Check if new photos were uploaded
         if ($request->hasFile('photo')) {
-            $property->photo = $request->file('photo')->store('photos');
+            foreach ($request->file('photo') as $file) {
+                try {
+                    $path = $file->store('public/images');
+                    $photoPaths[] = $path;
+                } catch (\Exception $e) {
+                    Log::error('File upload error: ' . $e->getMessage());
+                    return back()->withErrors('An error occurred while uploading one of the photos. Please try again.');
+                }
+            }
+            // If new photos are uploaded, update the photo paths
+            $data['photo'] = json_encode($photoPaths);
+        } else {
+            // If no new photos, retain the existing photos
+            $data['photo'] = $property->photo;
         }
-
-        $property->save();
-
-        return redirect()->route('properties.index')->with('success', 'Property updated successfully.');
+    
+        // Update the property record
+        $property->update($data);
+    
+        return redirect()->route('properties.index')->with('message', "Property was updated successfully");
     }
 
     public function destroy(Property $property)

@@ -60,6 +60,74 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($properties as $property)
+                <tr>
+
+                  <td class="">
+                    <div class="d-flex align-items-center">
+                      <a href="#"> <img src="../../assets/images/listing-img-1.jpg" alt=""
+                          class=" rounded img-4by3-md "></a>
+                      <div class="ms-3 lh-1">
+                        <h5 class="mb-1"> <a href="#" class="text-inherit">Beautiful Cozy Home</a></h5>
+                        <small class="text-muted">1009 Java Lane Batesburg, SC 29006</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle"><span class="badge bg-success">
+                      Active
+                    </span></td>
+                  <td class="align-middle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                      class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
+                      <path
+                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                    </svg>
+                  </td>
+                  <td class="align-middle">Ahmedabad</td>
+                  <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg><span>23 Reviews</span></td>
+                  <td class="align-middle">May 26, 2022</td>
+                  <td class="text-muted align-middle border-top-0 text-end">
+                    <span class="dropdown dropstart">
+                      <a class="" href="" role="button" id="courseDropdown2" data-bs-toggle="dropdown"
+                        data-bs-offset="-20,20" aria-expanded="false">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" class="feather feather-more-vertical">
+                          <circle cx="12" cy="12" r="1"></circle>
+                          <circle cx="12" cy="5" r="1"></circle>
+                          <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                      </a>
+                      <span class="dropdown-menu" aria-labelledby="courseDropdown2" style="">
+
+                        <a class="dropdown-item" href="#">
+                          Publish
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          Relist
+                        </a>
+                        <a class="dropdown-item" href="{{ route('properties.edit', $property)}}">
+                          Edit
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          Unlist
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          Delete
+                        </a>
+
+                      </span>
+                    </span>
+                  </td>
+                </tr>
+                @endforeach
+
                 <tr>
 
                   <td class="">
@@ -125,7 +193,8 @@
                     </span>
                   </td>
                 </tr>
-                  <tr>
+
+                <tr>
 
                   <td class="">
                     <div class="d-flex align-items-center">
@@ -190,6 +259,7 @@
                     </span>
                   </td>
                 </tr>
+
                 <tr>
 
                   <td class="">
@@ -255,332 +325,7 @@
                     </span>
                   </td>
                 </tr>
-                <tr>
 
-                  <td class="">
-                    <div class="d-flex align-items-center">
-                      <a href="#"> <img src="../../assets/images/listing-img-4.jpg" alt=""
-                          class=" rounded img-4by3-md "></a>
-                      <div class="ms-3 lh-1">
-                        <h5 class="mb-1"> <a href="#" class="text-inherit">Private Room No 4 - Boulevard View</a></h5>
-                        <small class="text-muted">Udaipur, Rajasthan, India</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle"><span class="badge bg-success">
-                      Active
-                    </span></td>
-                  <td class="align-middle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                      class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
-                      <path
-                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                    </svg>
-                  </td>
-                  <td class="align-middle">Udaipur</td>
-                  <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
-                      viewBox="0 0 16 16">
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg><span>75 Reviews</span></td>
-                  <td class="align-middle">24 May</td>
-                  <td class="text-muted align-middle border-top-0 text-end">
-                    <span class="dropdown dropstart">
-                      <a class="" href="#" role="button" id="courseDropdown2" data-bs-toggle="dropdown"
-                        data-bs-offset="-20,20" aria-expanded="false">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-more-vertical">
-                          <circle cx="12" cy="12" r="1"></circle>
-                          <circle cx="12" cy="5" r="1"></circle>
-                          <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                      </a>
-                      <span class="dropdown-menu" aria-labelledby="courseDropdown2" style="">
-
-                        <a class="dropdown-item" href="#">
-                          Publish
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Relist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Edit
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Unlist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Delete
-                        </a>
-
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-
-                  <td class="">
-                    <div class="d-flex align-items-center">
-                      <a href="#"> <img src="../../assets/images/listing-img-5.jpg" alt=""
-                          class=" rounded img-4by3-md "></a>
-                      <div class="ms-3 lh-1">
-                        <h5 class="mb-1"> <a href="#" class="text-inherit">Modern & flexible home</a></h5>
-                        <small class="text-muted">1009 Java Lane Batesburg, SC 29006</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle"><span class="badge bg-success">
-                      Active
-                    </span></td>
-                  <td class="align-middle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                      class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
-                      <path
-                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                    </svg>
-                  </td>
-                  <td class="align-middle">Maldives</td>
-                  <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
-                      viewBox="0 0 16 16">
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg><span>86 Reviews</span></td>
-                  <td class="align-middle">29 May</td>
-                  <td class="text-muted align-middle border-top-0 text-end">
-                    <span class="dropdown dropstart">
-                      <a class="" href="#" role="button" id="courseDropdown2" data-bs-toggle="dropdown"
-                        data-bs-offset="-20,20" aria-expanded="false">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-more-vertical">
-                          <circle cx="12" cy="12" r="1"></circle>
-                          <circle cx="12" cy="5" r="1"></circle>
-                          <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                      </a>
-                      <span class="dropdown-menu" aria-labelledby="courseDropdown2" style="">
-
-                        <a class="dropdown-item" href="#">
-                          Publish
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Relist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Edit
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Unlist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Delete
-                        </a>
-
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-
-                  <td class="">
-                    <div class="d-flex align-items-center">
-                      <a href="#"> <img src="../../assets/images/listing-img-6.jpg" alt=""
-                          class=" rounded img-4by3-md "></a>
-                      <div class="ms-3 lh-1">
-                        <h5 class="mb-1"> <a href="#" class="text-inherit">HANUMAN | A Luxury Pool Villa | 3-Bedroom</a></h5>
-                        <small class="text-muted">Surat Thani, Koh Samui, Thailand </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle"><span class="badge bg-success">
-                      Active
-                    </span></td>
-                  <td class="align-middle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                      class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
-                      <path
-                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                    </svg>
-                  </td>
-                  <td class="align-middle">Thailand</td>
-                  <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
-                      viewBox="0 0 16 16">
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg><span>98 Reviews</span></td>
-                  <td class="align-middle">24 May</td>
-                  <td class="text-muted align-middle border-top-0 text-end">
-                    <span class="dropdown dropstart">
-                      <a class="" href="#" role="button" id="courseDropdown2" data-bs-toggle="dropdown"
-                        data-bs-offset="-20,20" aria-expanded="false">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-more-vertical">
-                          <circle cx="12" cy="12" r="1"></circle>
-                          <circle cx="12" cy="5" r="1"></circle>
-                          <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                      </a>
-                      <span class="dropdown-menu" aria-labelledby="courseDropdown2" style="">
-
-                        <a class="dropdown-item" href="#">
-                          Publish
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Relist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Edit
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Unlist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Delete
-                        </a>
-
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-
-                  <td class="">
-                    <div class="d-flex align-items-center">
-                      <a href="#"> <img src="../../assets/images/listing-img-7.jpg" alt=""
-                          class=" rounded img-4by3-md "></a>
-                      <div class="ms-3 lh-1">
-                        <h5 class="mb-1"> <a href="#" class="text-inherit">house with amazing view of sea & sunset</a></h5>
-                        <small class="text-muted">1009 Java Lane Batesburg, SC 29006 </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle"><span class="badge bg-success">
-                      Active
-                    </span></td>
-                  <td class="align-middle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                      class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
-                      <path
-                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                    </svg>
-                  </td>
-                  <td class="align-middle">Greece</td>
-                  <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
-                      viewBox="0 0 16 16">
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg><span>44 Reviews</span></td>
-                  <td class="align-middle">22 May</td>
-                  <td class="text-muted align-middle border-top-0 text-end">
-                    <span class="dropdown dropstart">
-                      <a class="" href="#" role="button" id="courseDropdown2" data-bs-toggle="dropdown"
-                        data-bs-offset="-20,20" aria-expanded="false">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-more-vertical">
-                          <circle cx="12" cy="12" r="1"></circle>
-                          <circle cx="12" cy="5" r="1"></circle>
-                          <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                      </a>
-                      <span class="dropdown-menu" aria-labelledby="courseDropdown2" style="">
-
-                        <a class="dropdown-item" href="#">
-                          Publish
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Relist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Edit
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Unlist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Delete
-                        </a>
-
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-
-                  <td class="">
-                    <div class="d-flex align-items-center">
-                      <a href="#"> <img src="../../assets/images/listing-img-8.jpg" alt=""
-                          class=" rounded img-4by3-md "></a>
-                      <div class="ms-3 lh-1">
-                        <h5 class="mb-1"> <a href="#" class="text-inherit">Beach Studios, Vathi, Sifnos</a></h5>
-                        <small class="text-muted">Vathi, Sifnos, Greece </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle"><span class="badge bg-success">
-                      Active
-                    </span></td>
-                  <td class="align-middle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                      class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
-                      <path
-                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
-                    </svg>
-                  </td>
-                  <td class="align-middle">Greece</td>
-                  <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
-                      viewBox="0 0 16 16">
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg><span>13 Reviews</span></td>
-                  <td class="align-middle">2:55PM</td>
-                  <td class="text-muted align-middle border-top-0 text-end">
-                    <span class="dropdown dropstart">
-                      <a class="" href="#" role="button" id="courseDropdown2" data-bs-toggle="dropdown"
-                        data-bs-offset="-20,20" aria-expanded="false">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-more-vertical">
-                          <circle cx="12" cy="12" r="1"></circle>
-                          <circle cx="12" cy="5" r="1"></circle>
-                          <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                      </a>
-                      <span class="dropdown-menu" aria-labelledby="courseDropdown2" style="">
-
-                        <a class="dropdown-item" href="#">
-                          Publish
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Relist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Edit
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Unlist
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Delete
-                        </a>
-
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-               
               </tbody>
             </table>
           </div>

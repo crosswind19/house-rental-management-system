@@ -28,7 +28,7 @@
 
      <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
      <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-     
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -485,7 +485,9 @@
 
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
