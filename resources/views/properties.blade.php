@@ -1,5 +1,7 @@
 @extends('layouts.page')
 
+@section('title', 'Properties - ' . config('app.name'))
+
 @section('content')
 <div class="pt-8">
 

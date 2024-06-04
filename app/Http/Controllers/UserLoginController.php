@@ -26,7 +26,7 @@ class UserLoginController extends Controller
             }else if(auth()->user()->roles == 2){
                 return redirect()->route('agent');
             }else if(auth()->user()->roles == 1){
-                return redirect()->route('admin/home');
+                return redirect()->route('admin.home');
             }
 
             // if(auth()->user()->roles == 3){

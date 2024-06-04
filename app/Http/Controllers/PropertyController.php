@@ -2,34 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
 {
+    private function getLayout()
+    {
+        $user = auth()->user();
+
+        if ($user->roles == 1) {
+            return 'admin.layouts.app';
+        } elseif ($user->roles == 2) {
+            return 'agent.layouts.app';
+        } else {
+            return 'layouts.app';
+        }
+    }
+    
     public function index()
     {
+        // $user = auth()->user();
+
+        // if ($user->roles == 1) {
+        //     // Admin: Display all properties
+        //     $properties = Property::all();
+        //     return view('properties.dashboard', compact('properties'));
+        // } elseif ($user->roles == 2) {
+        //     // User: Display properties based on the user's ID
+        //     $properties = Property::where('user_id', $user->id)->get();
+        //     return view('properties.dashboard', compact('properties'));
+        // } elseif ($user->roles == 3) {
+        //     // User: Display properties based on the user's ID
+        //     $properties = Property::where('user_id', $user->id)->get();
+        //     return view('properties.dashboard', compact('properties'));
+        // } else {
+        //     // Optional: Handle other roles or unauthorized access
+        //     abort(403, 'Unauthorized action.');
+        // }
+
+
+        // $properties = Property::all();
+        // return view('properties.dashboard', compact('properties'));
+
         $user = auth()->user();
 
         if ($user->roles == 1) {
             // Admin: Display all properties
             $properties = Property::all();
-            return view('properties.dashboard', compact('properties'));
-        } elseif ($user->roles == 2) {
-            // User: Display properties based on the user's ID
-            $properties = Property::where('user_id', $user->id)->get();
-            return view('properties.dashboard', compact('properties'));
-        } elseif ($user->roles == 3) {
-            // User: Display properties based on the user's ID
-            $properties = Property::where('user_id', $user->id)->get();
-            return view('properties.dashboard', compact('properties'));
         } else {
-            // Optional: Handle other roles or unauthorized access
-            abort(403, 'Unauthorized action.');
+            // Agent and User: Display properties based on the user's ID
+            $properties = Property::where('user_id', $user->id)->get();
         }
-        // $properties = Property::all();
-        // return view('properties.dashboard', compact('properties'));
+
+        $layout = $this->getLayout();
+
+        return view('properties.dashboard', compact('properties', 'user', 'layout'));
     }
 
     public function properties()
@@ -47,7 +77,8 @@ class PropertyController extends Controller
 
     public function create()
     {
-        return view('properties.create');
+        $layout = $this->getLayout();
+        return view('properties.create', compact('layout'));
     }
 
     public function store(Request $request)
@@ -95,12 +126,14 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
-        return view('properties.show', compact('property'));
+        $layout = $this->getLayout();
+        return view('properties.show', compact('property', 'layout'));
     }
 
     public function edit(Property $property)
     {
-        return view('properties.edit', compact('property'));
+        $layout = $this->getLayout();
+        return view('properties.edit', compact('property', 'layout'));
     }
 
     public function update(Request $request, Property $property)
@@ -153,7 +186,21 @@ class PropertyController extends Controller
 
     public function destroy(Property $property)
     {
-        $property->delete();
-        return redirect()->route('properties.index')->with('success', 'Property deleted successfully.');
+        try {
+            // Delete the property
+            $property->delete();
+            
+            // Optionally, delete the associated photos from storage
+            if ($property->photo) {
+                foreach (json_decode($property->photo) as $photo) {
+                    Storage::delete($photo);
+                }
+            }
+            
+            return redirect()->route('properties.index')->with('message', 'Property deleted successfully');
+        } catch (\Exception $e) {
+            Log::error('Error deleting property: ' . $e->getMessage());
+            return redirect()->route('properties.index')->withErrors('An error occurred while deleting the property. Please try again.');
+        }
     }
 }

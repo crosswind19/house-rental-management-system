@@ -1,8 +1,8 @@
-@extends('layouts.page')
+@extends('layouts.app')
 
 @section('content')
 <!-- listing slide -->
-<div class="container pt-5 mt-5">
+{{-- <div class="container pt-5 mt-5">
     <div class="ratio ratio-16x9 rounded-3" style="background-image: url('{{ Storage::url(json_decode($property->photo)[0]) }}'); background-size: cover; background-position: center;">        <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                 <!-- listing badges -->
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="py-6">
     <div class="container">
         <div class="row">

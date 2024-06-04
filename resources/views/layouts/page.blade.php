@@ -7,14 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Rentkit - Directory & Listings Bootstrap 5 Template.">
 
-
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
 
-
   <!-- Libs CSS -->
-
   <link href="{{ asset('assets/libs/magnific-popup/dist/magnific-popup.css') }}" rel="stylesheet" />
   <link href="{{ asset('assets/libs/animate.css/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/libs/nouislider/dist/nouislider.min.css') }}" rel="stylesheet">
@@ -24,12 +21,12 @@
   <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
-
+  
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
   {{-- <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet"> --}}
-  <title>Homepage - Rentkit - Directory & Listings Bootstrap 5 Template.</title>
+  <title>@yield('title', config('app.name'))</title>
 </head>
 
 <body class="">

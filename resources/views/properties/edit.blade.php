@@ -34,7 +34,7 @@
                                 <div class="mb-3">
                                     <label for="property_name" class="form-label">Property Name</label>
                                     <input type="text" class="form-control" id="property_name"
-                                        placeholder="Enter Your Property Name" name="property_name" value="{{$property->property_name}}" required>
+                                        placeholder="Enter Your Property Name" name="property_name" value="{{ old('property_name', $property->property_name) }}" required>
                                         @error('property_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -47,8 +47,8 @@
                                 <div class="mb-3">
                                     <label for="property_type" class="form-label">Property Type</label>
                                     <select class="select2 form-control @error('property_type') is-invalid @enderror" id="property_type" name="property_type">
-                                        <option value="Condo" {{ old('property_type') == 'Condo' ? 'selected' : '' }}>Condo</option>
-                                        <option value="Landed" {{ old('property_type') == 'Landed' ? 'selected' : '' }}>Landed</option>
+                                        <option value="Condo" {{ old('property_type', $property->property_type) == 'Condo' ? 'selected' : '' }}>Condo</option>
+                                        <option value="Landed" {{ old('property_type', $property->property_type) == 'Landed' ? 'selected' : '' }}>Landed</option>
                                     </select>
                                     @error('property_type')
                                         <span class="invalid-feedback" role="alert">
@@ -62,9 +62,9 @@
                                 <div class="mb-3">
                                     <label for="furnishing" class="form-label">Furnishing Status</label>
                                     <select class="select2 form-control @error('furnishing') is-invalid @enderror" id="furnishing" name="furnishing">
-                                        <option value="Fully Furnished" {{ old('furnishing') == 'Fully Furnished' ? 'selected' : '' }}>Fully Furnished</option>
-                                        <option value="Partial Furnish" {{ old('furnishing') == 'Partial Furnish' ? 'selected' : '' }}>Partial Furnish</option>
-                                        <option value="Retail" {{ old('furnishing') == 'Retail' ? 'selected' : '' }}>No Furnish</option>
+                                        <option value="Fully Furnished" {{ old('furnishing', $property->furnishing) == 'Fully Furnished' ? 'selected' : '' }}>Fully Furnished</option>
+                                        <option value="Partial Furnish" {{ old('furnishing', $property->furnishing) == 'Partial Furnish' ? 'selected' : '' }}>Partial Furnish</option>
+                                        <option value="Retail" {{ old('furnishing', $property->furnishing) == 'Retail' ? 'selected' : '' }}>No Furnish</option>
                                     </select>
                                     @error('furnishing')
                                         <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                                 <div class="mb-3">
                                     <label for="build_up_area" class="form-label">Build Up Area (SQFT)</label>
                                     <input type="text" class="form-control @error('build_up_area') is-invalid @enderror" id="build_up_area"
-                                        placeholder="Enter Your Area SQFT" name="build_up_area" value="{{ old('build_up_area') }}" required>
+                                           placeholder="Enter Your Area SQFT" name="build_up_area" value="{{ old('build_up_area', $property->build_up_area) }}" required>
                                     @error('build_up_area')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -90,8 +90,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Street Address</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                                        placeholder="Enter Your Street Address" name="address" value="{{ old('address') }}" required>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter Your Street Address" name="address" value="{{ old('address', $property->address) }}" required>
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -104,7 +103,7 @@
                                 <div class="mb-3">
                                     <label for="country" class="form-label">Country</label>
                                     <select class="select2 form-control @error('country') is-invalid @enderror" id="country" name="country">
-                                        <option value="Malaysia" {{ old('country') == 'Malaysia' ? 'selected' : '' }}>Malaysia</option>
+                                        <option value="Malaysia" {{ old('country', $property->country) == 'Malaysia' ? 'selected' : '' }}>Malaysia</option>
                                     </select>
                                     @error('country')
                                         <span class="invalid-feedback" role="alert">
@@ -118,22 +117,22 @@
                                 <div class="mb-3">
                                     <label for="state" class="form-label">State</label>
                                     <select class="select2 form-control @error('state') is-invalid @enderror" id="state" name="state">
-                                        <option value="Johor" {{ old('state') == 'Johor' ? 'selected' : '' }}>Johor</option>
-                                        <option value="Kedah" {{ old('state') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
-                                        <option value="Kelantan" {{ old('state') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
-                                        <option value="Malacca" {{ old('state') == 'Malacca' ? 'selected' : '' }}>Malacca</option>
-                                        <option value="Negeri Sembilan" {{ old('state') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
-                                        <option value="Pahang" {{ old('state') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
-                                        <option value="Penang" {{ old('state') == 'Penang' ? 'selected' : '' }}>Penang</option>
-                                        <option value="Perak" {{ old('state') == 'Perak' ? 'selected' : '' }}>Perak</option>
-                                        <option value="Perlis" {{ old('state') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
-                                        <option value="Sabah" {{ old('state') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
-                                        <option value="Sarawak" {{ old('state') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
-                                        <option value="Selangor" {{ old('state') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
-                                        <option value="Terengganu" {{ old('state') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
-                                        <option value="Kuala Lumpur" {{ old('state') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
-                                        <option value="Labuan" {{ old('state') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
-                                        <option value="Putrajaya" {{ old('state') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
+                                        <option value="Johor" {{ old('state', $property->state) == 'Johor' ? 'selected' : '' }}>Johor</option>
+                                        <option value="Kedah" {{ old('state', $property->state) == 'Kedah' ? 'selected' : '' }}>Kedah</option>
+                                        <option value="Kelantan" {{ old('state', $property->state) == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
+                                        <option value="Malacca" {{ old('state', $property->state) == 'Malacca' ? 'selected' : '' }}>Malacca</option>
+                                        <option value="Negeri Sembilan" {{ old('state', $property->state) == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
+                                        <option value="Pahang" {{ old('state', $property->state) == 'Pahang' ? 'selected' : '' }}>Pahang</option>
+                                        <option value="Penang" {{ old('state', $property->state) == 'Penang' ? 'selected' : '' }}>Penang</option>
+                                        <option value="Perak" {{ old('state', $property->state) == 'Perak' ? 'selected' : '' }}>Perak</option>
+                                        <option value="Perlis" {{ old('state', $property->state) == 'Perlis' ? 'selected' : '' }}>Perlis</option>
+                                        <option value="Sabah" {{ old('state', $property->state) == 'Sabah' ? 'selected' : '' }}>Sabah</option>
+                                        <option value="Sarawak" {{ old('state', $property->state) == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
+                                        <option value="Selangor" {{ old('state', $property->state) == 'Selangor' ? 'selected' : '' }}>Selangor</option>
+                                        <option value="Terengganu" {{ old('state', $property->state) == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
+                                        <option value="Kuala Lumpur" {{ old('state', $property->state) == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
+                                        <option value="Labuan" {{ old('state', $property->state) == 'Labuan' ? 'selected' : '' }}>Labuan</option>
+                                        <option value="Putrajaya" {{ old('state', $property->state) == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
                                     </select>
                                     @error('state')
                                         <span class="invalid-feedback" role="alert">
@@ -146,7 +145,7 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="city" class="form-label">City</label>
-                                    <textarea class="form-control @error('city') is-invalid @enderror" id="city" name="city" placeholder="e.g Bukit Jalil" rows="1">{{ old('city') }}</textarea>
+                                    <textarea class="form-control @error('city') is-invalid @enderror" id="city" name="city" placeholder="e.g Bukit Jalil" rows="1">{{ old('city', $property->city) }}</textarea>
                                     @error('city')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -158,8 +157,7 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="zipcode" class="form-label">Zip Code</label>
-                                    <input type="text" class="form-control @error('zipcode') is-invalid @enderror" id="zipcode" placeholder="e.g 57000"
-                                        name="zipcode" value="{{ old('zipcode') }}" required>
+                                    <input type="text" class="form-control @error('zipcode') is-invalid @enderror" id="zipcode" placeholder="e.g 57000" name="zipcode" value="{{ old('zipcode', $property->zipcode) }}" required>
                                     @error('zipcode')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -171,8 +169,8 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="bedroom" class="form-label">Bedroom</label>
-                                    <input type="text" class="form-control @error('bedroom') is-invalid @enderror" id="bedroom" placeholder="e.g 57000"
-                                        name="bedroom" value="{{ old('bedroom') }}" required>
+                                    <input type="text" class="form-control @error('bedroom') is-invalid @enderror" id="bedroom" placeholder="e.g 3"
+                                        name="bedroom" value="{{ old('bedroom', $property->bedroom) }}" required>
                                     @error('bedroom')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -184,8 +182,8 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="bathroom" class="form-label">Bathroom</label>
-                                    <input type="text" class="form-control @error('bathroom') is-invalid @enderror" id="bathroom" placeholder="e.g 57000"
-                                        name="bathroom" value="{{ old('bathroom') }}" required>
+                                    <input type="text" class="form-control @error('bathroom') is-invalid @enderror" id="bathroom" placeholder="e.g 2"
+                                        name="bathroom" value="{{ old('bathroom', $property->bathroom) }}" required>
                                     @error('bathroom')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -197,8 +195,8 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="car_park" class="form-label">Car Park</label>
-                                    <input type="text" class="form-control @error('car_park') is-invalid @enderror" id="car_park" placeholder="e.g 57000"
-                                        name="car_park" value="{{ old('car_park') }}" required>
+                                    <input type="text" class="form-control @error('car_park') is-invalid @enderror" id="car_park" placeholder="e.g 2"
+                                        name="car_park" value="{{ old('car_park', $property->car_park) }}" required>
                                     @error('car_park')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -311,7 +309,12 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 mb-8">
-                                <textarea name="description" id="description" rows="10" class="form-control">{{ old('description') }}</textarea>
+                                <textarea name="description" id="description" rows="10" class="form-control @error('description') is-invalid @enderror">{{ old('description', $property->description) }}</textarea>
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-lg-12 mt-5 mt-md-0">
                                 <small>Write a quick summary of your place. You can highlight what’s special about your space</small>
@@ -341,22 +344,33 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @endforeach
                                 @endforeach
+                                @if($property->photo)
+                                    <div class="mt-3">
+                                        <h5>Existing Photos</h5>
+                                        @foreach(json_decode($property->photo) as $photo)
+                                            <img src="{{ Storage::url($photo) }}" alt="Property Photo" class="img-thumbnail" width="150">
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
+                        </div>
                         <!-- price  -->
                         <div class="row mb-8">
                             <div class="col-lg-12">
                                 <div class="mb-4 border-bottom pb-2">
-                                    <h4 class="mb-0">Price </h4>
+                                    <h4 class="mb-0">Price</h4>
                                 </div>
                             </div>
-                            <!-- upload images  -->
                             <div class="col-12">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control " id="price"
-                                        placeholder="Enter Your Price" name="price" required>
+                                    <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter Your Price" name="price" value="{{ old('price', $property->price) }}" required>
+                                    @error('price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
-
                         </div>
                         
                         <!-- submit button  -->

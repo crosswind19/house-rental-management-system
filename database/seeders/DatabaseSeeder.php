@@ -36,6 +36,10 @@ class DatabaseSeeder extends Seeder
             'roles' => 1
         ]);
 
+        $this->call([
+            PropertiesTableSeeder::class,
+        ]);
+
         
     }
 }

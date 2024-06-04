@@ -1,6 +1,10 @@
 @extends('layouts.page')
 
+@section('title', 'Homepage - ' . config('app.name'))
+
 @section('content')
+  <!-- Title -->
+
 
   <div class="d-flex flex-wrap w-100">
     <div class="flex-1" style="min-width: 0;">
