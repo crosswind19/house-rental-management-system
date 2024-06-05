@@ -1,7 +1,9 @@
 @extends('layouts.page')
 
 @section('title', 'Properties - ' . config('app.name'))
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+@endsection
 @section('content')
 <div class="pt-8">
 

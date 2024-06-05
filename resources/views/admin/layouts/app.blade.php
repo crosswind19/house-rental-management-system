@@ -18,7 +18,11 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    
+    
+    
 
 </head>
 

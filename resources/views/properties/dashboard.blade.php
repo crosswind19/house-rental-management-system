@@ -65,8 +65,18 @@
 
                   <td class="">
                     <div class="d-flex align-items-center">
-                      <a href="#"> <img src="../../assets/images/listing-img-1.jpg" alt=""
-                          class=" rounded img-4by3-md "></a>
+                      <!-- Display the first property photo -->
+                          @if(!empty($property->photo))
+                            @php
+                                $photos = json_decode($property->photo);
+                            @endphp
+
+                            @if(is_array($photos) && count($photos) > 0)
+                                <a href="#">
+                                    <img src="{{ Storage::url($photos[0]) }}" alt="Property Photo" class="rounded img-4by3-md">
+                                </a>
+                            @endif
+                        @endif
                       <div class="ms-3 lh-1">
                         <h5 class="mb-1"> <a href="{{route('properties.show', $property->id)}}" class="text-inherit">{{$property->property_name}}</a></h5>
                         <small class="text-muted">{{$property->address}}</small>

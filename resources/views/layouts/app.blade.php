@@ -26,8 +26,9 @@
      <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
      <link href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
-     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
      <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+     
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
@@ -350,6 +351,10 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('home')}}">Homepage</a>
                         </li>
             
                         <div class="topbar-divider d-none d-sm-block"></div>

@@ -24,28 +24,6 @@ class PropertyController extends Controller
     
     public function index()
     {
-        // $user = auth()->user();
-
-        // if ($user->roles == 1) {
-        //     // Admin: Display all properties
-        //     $properties = Property::all();
-        //     return view('properties.dashboard', compact('properties'));
-        // } elseif ($user->roles == 2) {
-        //     // User: Display properties based on the user's ID
-        //     $properties = Property::where('user_id', $user->id)->get();
-        //     return view('properties.dashboard', compact('properties'));
-        // } elseif ($user->roles == 3) {
-        //     // User: Display properties based on the user's ID
-        //     $properties = Property::where('user_id', $user->id)->get();
-        //     return view('properties.dashboard', compact('properties'));
-        // } else {
-        //     // Optional: Handle other roles or unauthorized access
-        //     abort(403, 'Unauthorized action.');
-        // }
-
-
-        // $properties = Property::all();
-        // return view('properties.dashboard', compact('properties'));
 
         $user = auth()->user();
 
@@ -72,7 +50,8 @@ class PropertyController extends Controller
     public function property($id)
     {
         $property = Property::findOrFail($id);
-        return view('property', compact('property'));
+        $user = $property->user;
+        return view('property', compact('property','user'));
     }
 
     public function create()

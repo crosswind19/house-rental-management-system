@@ -3,7 +3,8 @@
 @section('content')
 <!-- listing slide -->
 <div class="container pt-5 mt-5">
-    <div class="ratio ratio-16x9 rounded-3" style="background-image: url('{{ Storage::url(json_decode($property->photo)[0]) }}'); background-size: cover; background-position: center;">        <div class="row">
+    <div class="ratio ratio-16x9 rounded-3" style="background-image: url('{{ Storage::url(json_decode($property->photo)[0]) }}'); background-size: cover; background-position: center;">        
+        <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                 <!-- listing badges -->
                 <div class="position-absolute bottom-0 mb-5 ms-5">
@@ -327,28 +328,25 @@
                             </div>
                         </div>
                     </div>
-                    <!-- listing widget -->
-                    <!-- listing widget -->
+                    <!-- Hosted by section -->
                     <div class="card mb-4">
                         <div class="card-body p-4">
                             <h5 class="mb-0">Hosted by <span class="mdi mdi-medal text-primary float-right"></span></h5>
                             <div class="text-center mt-4">
-                                <img src="../assets/images/avatar-3.jpg " alt="Rentkit Directory & Listing Bootstrap 5 Theme" class="rounded-circle avatar avatar-lg mb-2">
-                                <h5 class="mb-0">Juana Henry</h5>
-                                <small>joined in january 2017</small>
-                                <p class="mb-0 mx-5 mt-3">Duis varius finibus felis, a tincidunt sedmauris varius eudeunc aliquet ipsum odio id luctus quam dapibus sem.</p>
+                                <img src="{{ $user->avatar_url ?? '../assets/images/avatar-3.jpg' }}" alt="{{ $user->name }}" class="rounded-circle avatar avatar-lg mb-2">
+                                <h5 class="mb-0">{{ $user->name }}</h5>
+                                <small>joined in {{ $user->created_at->format('F Y') }}</small>
+                                <p class="mb-0 mx-5 mt-3">{{ $user->bio ?? 'No bio available.' }}</p>
                             </div>
                         </div>
                         <div class="border-top card-body p-4 text-center">
-                            <p class="mb-0">Response rate: <span class="text-primary">100%</span></p>
-                            <p>Response time: <span class="text-primary">within an hour</span></p>
+                            <p class="mb-0">Response rate: <span class="text-primary">{{ $user->response_rate ?? 'N/A' }}</span></p>
+                            <p>Response time: <span class="text-primary">{{ $user->response_time ?? 'N/A' }}</span></p>
                             <div class="d-grid mx-8">
                                 <a href="#" class="btn btn-dark">Contact Host</a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- listing detail -->
                 <div class="d-grid">
                     <a href="#" class="btn btn-light mb-4"><i class="mdi mdi-flag-variant-outline me-1"></i>Report this
         listing</a>
