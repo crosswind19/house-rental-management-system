@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends($layout)
 
 @section('content')
 <!-- listing slide -->
@@ -25,7 +25,7 @@
                     <!-- listing detail head -->
                     <div class="card-body p-4">
                         <h2 class="mb-2"> {{$property->property_name}} </h2> 
-                        <p class="mb-4 fs-6">{{$property->city}}, {{$property->state}}</p>
+                        <p class="mb-4 fs-6">{{$property->city}}, {{$property->state->name}}</p>
                         <p>{{$property->build_up_area}} SQFT</p>
                         <div class="text-sm">
                             <span class="me-2"><i class="mdi mdi-home text-primary"></i><span class="ms-2">{{$property->bedroom}} Bedroom</span></span>

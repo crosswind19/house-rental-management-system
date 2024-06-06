@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends($layout)
 
 @section('content')
 <!-- main wrapper  -->
@@ -44,10 +44,11 @@
                             <!-- property type  -->
                             <div class="col-12">
                                 <div class="mb-3">
-                                    <label for="property_type" class="form-label">Property Type</label>
-                                    <select class="select2 form-control @error('property_type') is-invalid @enderror" id="property_type" name="property_type">
-                                        <option value="Condo" {{ old('property_type') == 'Condo' ? 'selected' : '' }}>Condo</option>
-                                        <option value="Landed" {{ old('property_type') == 'Landed' ? 'selected' : '' }}>Landed</option>
+                                    <label for="property_type_id" class="form-label">Property Type</label>
+                                    <select class="select2 form-control @error('property_type_id') is-invalid @enderror" id="property_type_id" name="property_type_id">
+                                        @foreach ($propertyTypes as $propertyType)
+                                            <option value="{{ $propertyType->id }}" {{ old('property_type_id') == $propertyType->id ? 'selected' : '' }}>{{ $propertyType->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('property_type')
                                         <span class="invalid-feedback" role="alert">
@@ -116,25 +117,12 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="state" class="form-label">State</label>
-                                    <select class="select2 form-control @error('state') is-invalid @enderror" id="state" name="state">
-                                        <option value="Johor" {{ old('state') == 'Johor' ? 'selected' : '' }}>Johor</option>
-                                        <option value="Kedah" {{ old('state') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
-                                        <option value="Kelantan" {{ old('state') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
-                                        <option value="Malacca" {{ old('state') == 'Malacca' ? 'selected' : '' }}>Malacca</option>
-                                        <option value="Negeri Sembilan" {{ old('state') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
-                                        <option value="Pahang" {{ old('state') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
-                                        <option value="Penang" {{ old('state') == 'Penang' ? 'selected' : '' }}>Penang</option>
-                                        <option value="Perak" {{ old('state') == 'Perak' ? 'selected' : '' }}>Perak</option>
-                                        <option value="Perlis" {{ old('state') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
-                                        <option value="Sabah" {{ old('state') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
-                                        <option value="Sarawak" {{ old('state') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
-                                        <option value="Selangor" {{ old('state') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
-                                        <option value="Terengganu" {{ old('state') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
-                                        <option value="Kuala Lumpur" {{ old('state') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
-                                        <option value="Labuan" {{ old('state') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
-                                        <option value="Putrajaya" {{ old('state') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
+                                    <select class="select2 form-control @error('state_id') is-invalid @enderror" id="state_id" name="state_id">
+                                        @foreach ($states as $state)
+                                            <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected' : '' }}>{{ $state->name }}</option>
+                                        @endforeach
                                     </select>
-                                    @error('state')
+                                    @error('state_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

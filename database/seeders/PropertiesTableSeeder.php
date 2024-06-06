@@ -15,11 +15,11 @@ class PropertiesTableSeeder extends Seeder
     {
         DB::table('properties')->insert([
             'property_name' => 'Luxury Condo',
-            'property_type' => 'Condo',
+            'property_type_id' => 3,
             'description' => 'A luxury condo located in the heart of the city.',
             'address' => '123 Main St',
             'city' => 'Cityville',
-            'state' => 'Stateland',
+            'state_id' => 1,
             'zipcode' => '12345',
             'country' => 'Countryland',
             'price' => 1000000.00,

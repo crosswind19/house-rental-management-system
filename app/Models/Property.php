@@ -11,11 +11,11 @@ class Property extends Model
 
     protected $fillable = [
         'property_name',
-        'property_type',
+        'property_type_id',
         'description',
         'address',
         'city',
-        'state',
+        'state_id',
         'zipcode',
         'country',
         'price',
@@ -34,5 +34,15 @@ class Property extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function propertyType()
+    {
+        return $this->belongsTo(PropertyType::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
     }
 }

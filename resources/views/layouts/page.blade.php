@@ -72,6 +72,7 @@
                                   
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{ route('properties.index') }}" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Property Type</a>
+                                
                                 <ul class="dropdown-menu" aria-labelledby="blogDropdown">
                                     <li><a href="./pages/blog.html" class="dropdown-item">Apartment</a></li>
                                     <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
@@ -89,15 +90,17 @@
                           </ul>
 
                           @if (Auth::check() && (Auth::user()->roles == 3))
-                                <a class="nav-link dropdown-toggle pe-3" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <li class="nav-item dropdown text-decoration-none">
+                                <a class="nav-link dropdown-toggle pe-3" href="" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <span>Welcome, {{ Auth::user()->name }}</span></a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" aria-labelledby="homeDropdown">
                                     <li><a class="dropdown-item" href="./index.html">My Profile</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                       @csrf
                                     </form>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                                 </ul>
+                              </li>
                               <a href="{{ route('dashboard')}}" class="btn btn-primary d-none d-lg-block">Dashboard</a>
                           @else
                           {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}

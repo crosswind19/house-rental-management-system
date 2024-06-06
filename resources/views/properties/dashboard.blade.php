@@ -1,5 +1,7 @@
 @extends($layout)
 
+
+
 @section('content')
 
 <!-- Container fluid -->
@@ -8,7 +10,7 @@
       <div class="col-lg-12 col-md-12 col-12">
         <div class=" mb-4 d-flex justify-content-between align-items-center">
           <div>
-            <h1 class="mb-0 fw-bold h2">Your Listings {{$user->roles}}</h1>
+            <h1 class="mb-0 fw-bold h2">Your Listings</h1>
 
           </div>
           <div class="d-flex">
@@ -79,13 +81,19 @@
                         @endif
                       <div class="ms-3 lh-1">
                         <h5 class="mb-1"> <a href="{{route('properties.show', $property->id)}}" class="text-inherit">{{$property->property_name}}</a></h5>
-                        <small class="text-muted">{{$property->address}}</small>
+                        <small class="text-muted">{{$property->propertyType->name}}</small>
                       </div>
                     </div>
                   </td>
+                  @if($property->availability == 0)
                   <td class="align-middle"><span class="badge bg-success">
-                      Active
+                      Available
                     </span></td>
+                  @else
+                  <td class="align-middle"><span class="badge bg-danger">
+                      <a href="#" class="text-white text-decoration-none">Rented</a>
+                  </span></td>
+                  @endif
                   <td class="align-middle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                       class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
@@ -93,7 +101,7 @@
                         d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
                     </svg>
                   </td>
-                  <td class="align-middle">{{$property->state}}</td>
+                  <td class="align-middle">{{$property->city}}, {{$property->state->name}}</td>
                   {{-- <td class="align-middle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                       fill="currentColor" class="bi bi-star-fill text-primary me-2 align-text-top"
                       viewBox="0 0 16 16">
@@ -143,14 +151,11 @@
                       </div>
                     </div>
                   </td>
-                  <td class="align-middle"><span class="badge bg-success">
-                      Active
-                    </span></td>
+                  <td class="align-middle"><span class="badge bg-success"> Active </span></td>
                   <td class="align-middle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                       class="bi bi-lightning-fill text-warning" viewBox="0 0 16 16">
-                      <path
-                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                      <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
                     </svg>
                   </td>
                   <td class="align-middle">Ahmedabad</td>

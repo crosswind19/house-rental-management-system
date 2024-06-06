@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
+use App\Models\State;
 use App\Models\Property;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -36,8 +38,9 @@ class PropertyController extends Controller
         }
 
         $layout = $this->getLayout();
-
-        return view('properties.dashboard', compact('properties', 'user', 'layout'));
+        $propertyTypes = PropertyType::all();
+        $states = State::all();
+        return view('properties.dashboard', compact('properties', 'user', 'layout', 'propertyTypes', 'states'));
     }
 
     public function properties()
@@ -57,18 +60,20 @@ class PropertyController extends Controller
     public function create()
     {
         $layout = $this->getLayout();
-        return view('properties.create', compact('layout'));
+        $propertyTypes = PropertyType::all();
+        $states = State::all();
+        return view('properties.create', compact('layout','propertyTypes', 'states'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'property_name' => 'required|string|max:255',
-            'property_type' => 'required|string|max:255',
+            'property_type_id' => 'required|exists:property_types,id',
             'description' => 'required',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
+            'state_id' => 'required|exists:states,id',
             'zipcode' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
@@ -100,7 +105,7 @@ class PropertyController extends Controller
 
     property::create($data);
 
-    return to_route('properties.index', $data)->with('message',"Menu was created");
+    return to_route('properties.index', $data)->with('message',"Property was created");
     }
 
     public function show(Property $property)
