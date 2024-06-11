@@ -6,11 +6,14 @@ use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AgentMiddleware;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Middleware\GuestUserMiddleware;
 use App\Http\Middleware\GuestAdminMiddleware;
+use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\UserLoginController; // Add this line
 
 // Route::get('/', function () {
@@ -25,6 +28,8 @@ Auth::routes();
 
 //User
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('properties/{id}/check', [BookingController::class, 'checkAvailability'])->name('bookings.check');
+Route::post('properties/{id}/book', [BookingController::class, 'store'])->name('bookings.store');
 
 Route::prefix('/')->group(function(){
 
@@ -59,10 +64,22 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth', AdminMiddleware::class])->group(function(){ //make sure the authenticated user is admin
         Route::get('/home', [AdminHomeController::class, 'index'])->name('home'); 
+
+        // PropertyType Routes
+    Route::resource('property-types', PropertyTypeController::class);
+
+    // State Routes
+    Route::resource('states', StateController::class);
     });
     
 });
 
 Route::middleware(['auth'])->group(function(){
     Route::resource('properties', PropertyController::class);
+    Route::resource('booking', BookingController::class);
+
+    //Test
+    Route::get('manage-bookings', [BookingController::class, 'manageBookings'])->name('bookings.manage');
+    Route::post('update-booking-status/{id}', [BookingController::class, 'updateBookingStatus'])->name('bookings.updateStatus');
+    Route::get('tenant-bookings', [BookingController::class, 'tenantBookings'])->name('bookings.tenant');
 });

@@ -1,5 +1,7 @@
 @extends('layouts.page')
 
+@section('title', 'Property - ' . config('app.name'))
+
 @section('content')
 <!-- listing slide -->
 <div class="container pt-5 mt-5">
@@ -295,38 +297,54 @@
             <div class="col-xl-4 col-lg-4 col-md-12 col-12 ">
                 <!-- listing detail -->
                 <div>
-                    <!-- listing widget -->
-                    <div class="card mb-4 ">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <h3 class="fw-bold">$120</h3><small class="text-muted ms-2">/ night</small>
-                            </div>
-                            <div>
-                                <form>
-                                    <div class="mb-3">
-                                        <label class="form-label">Your Stay</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="dateSelect" placeholder="Select Date" aria-label="Recipient's username">
-                                            <span class="input-group-text bg-transparent"><i
-                      class="mdi mdi-calendar-month-outline"></i></span>
+                     <!-- Booking Form -->
+                        <div class="card mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <h3 class="fw-bold">{{ $property->price }}</h3>
+                                </div>
+                                <div>
+                                    <form action="{{ route('bookings.check', $property->id) }}" method="POST" onsubmit="combineTime()">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label">Select Date and Time for Viewing</label>
+                                            <div class="input-group mb-3">
+                                                <input type="date" class="form-control" id="date" name="date" value="{{session('date')}}" required>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="form-group">
+                                                    <label for="hour-select">Hour:</label>
+                                                    <select id="hour-select" class="form-control" name="hour" required></select>
+                                                </div>
+                                                <div class="form-group ml-2">
+                                                    <label for="minute-select">Minute:</label>
+                                                    <select id="minute-select" class="form-control" name="minute" required>
+                                                        <option value="00">00</option>
+                                                        <option value="30">30</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="time" name="time">
                                         </div>
-                                    </div>
-                                    <!-- select -->
-                                    <select class="select2">
-                <option>Guest</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-                                    <div class="mt-3 d-grid">
-                                        <button class="btn btn-primary " type="button">Check
-                  Availability</button>
-                                    </div>
-                                </form>
+                                        <div class="mt-3 d-grid">
+                                            <button class="btn btn-primary" type="submit">Check Availability</button>
+                                        </div>
+                                    </form>
+                                    @if(session('availability'))
+                                        @if(session('availability') == 'available')
+                                            <div class="alert alert-success mt-3">The slot is available!</div>
+                                            <form action="{{ route('bookings.store', $property->id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="date" value="{{ session('date') }}">
+                                                <input type="hidden" name="time" value="{{ session('time') }}">
+                                                <button class="btn btn-success mt-2" type="submit">Register Booking for {{session('date')}}, {{session('time')}}</button>
+                                            </form>
+                                        @elseif(session('availability') == 'unavailable')
+                                            <div class="alert alert-danger mt-3">The slot is not available.</div>
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
                     </div>
                     <!-- Hosted by section -->
                     <div class="card mb-4">
@@ -406,7 +424,8 @@
                         <p class="text-sm font-weight-semi-bold">Udaipur, Rajasthan, India</p>
                         <div class="d-flex justify-content-between mt-3">
                             <div>
-                                <span class=" h5">$100</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
+                                <span class=" h5">{{$property->price}}</span>
+                                {{-- <span class="text-sm font-weight-semi-bold ms-1">/night</span> --}}
                             </div>
                             <div>
                                 <span class="mdi mdi-star me-1 text-primary text-sm"></span>
@@ -503,4 +522,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+</script>
 @endsection

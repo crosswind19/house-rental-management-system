@@ -1,6 +1,7 @@
 @extends('layouts.page')
 
 @section('title', 'Properties - ' . config('app.name'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
 @endsection
@@ -216,7 +217,8 @@
                                 <p class="text-sm font-weight-semi-bold">Udaipur, Rajasthan, India</p>
                                 <div class="d-flex justify-content-between mt-3">
                                     <div>
-                                        <span class="h5">$100</span><span class="text-sm font-weight-semi-bold ms-1">/night</span>
+                                        <span class="h5">{{$property->price}}</span>
+                                        {{-- <span class="text-sm font-weight-semi-bold ms-1">/night</span> --}}
                                     </div>
                                     <div>
                                         <span class="mdi mdi-star me-1 text-primary text-sm"></span>

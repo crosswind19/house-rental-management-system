@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\State;
+use App\Models\Booking;
 use App\Models\Property;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
@@ -187,4 +189,5 @@ class PropertyController extends Controller
             return redirect()->route('properties.index')->withErrors('An error occurred while deleting the property. Please try again.');
         }
     }
+
 }

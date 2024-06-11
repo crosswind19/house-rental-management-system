@@ -67,6 +67,13 @@
                     <span>Properties</span></a>
             </li>
 
+            <!-- Nav Item - Booking -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('bookings.manage')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Booking</span></a>
+            </li>
+
             <!-- Nav Item - Enquiries -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">

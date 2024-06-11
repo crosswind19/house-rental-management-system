@@ -229,8 +229,44 @@
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
 
+  @yield('js')
   <!-- Theme JS -->
   <script src="{{ asset('assets/js/theme.min.js')}}"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const hourSelect = document.getElementById('hour-select');
+            const minuteSelect = document.getElementById('minute-select');
+
+            // Populate hour select options
+            for (let i = 10; i <= 21; i++) {
+                const option = document.createElement('option');
+                option.value = String(i).padStart(2, '0');
+                option.textContent = String(i).padStart(2, '0');
+                hourSelect.appendChild(option);
+            }
+
+            // Set the selected values if they exist
+            const oldHour = "{{ old('hour') }}";
+            const oldMinute = "{{ old('minute') }}";
+
+            if (oldHour) {
+                hourSelect.value = oldHour;
+            }
+            if (oldMinute) {
+                minuteSelect.value = oldMinute;
+            }
+        });
+
+        function combineTime() {
+            const hour = document.getElementById('hour-select').value;
+            const minute = document.getElementById('minute-select').value;
+            document.getElementById('time').value = `${hour}:${minute}`;
+        }
+  </script>

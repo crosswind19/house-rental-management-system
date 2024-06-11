@@ -45,4 +45,14 @@ class Property extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function agent()
+    {
+        return $this->belongsTo(User::class, 'agent_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

@@ -72,6 +72,27 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
+                Property-Details
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.property-types.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Property Types</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.states.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>States</span></a>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
                 Interface
             </div>
 
