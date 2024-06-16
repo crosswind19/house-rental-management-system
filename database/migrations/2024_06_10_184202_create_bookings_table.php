@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); // tenant
             $table->date('date');
             $table->time('time');
+            $table->text('message')->nullable();
             $table->string('status')->default('pending'); // pending, accepted, rejected
             $table->unsignedBigInteger('handled_by')->nullable();
             $table->timestamps();

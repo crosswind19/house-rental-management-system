@@ -59,7 +59,32 @@ class UserLoginController extends Controller
         auth()->login($user);
 
         return redirect()->route('home')->with('success', 'Registration successful.');
-        }
+    }
+
+    //Agent
+    public function registerFormAgent(){
+        return view('agent.auth.register');
+    }
+
+    public function registerAgent(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+            // Create the user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // Optionally, log the user in
+        auth()->login($user);
+
+        return redirect()->route('login')->with('success', 'Registration successful.');
+    }
 
         
 }

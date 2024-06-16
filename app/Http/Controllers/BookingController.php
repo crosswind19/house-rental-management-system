@@ -77,6 +77,7 @@ class BookingController extends Controller
         $booking->user_id = Auth::id();
         $booking->date = $request->date;
         $booking->time = $request->time;
+        $booking->message = $request->message;
         $booking->save();
 
         return redirect()->route('property', $property->id)->with('success', 'Booking registered successfully.');

@@ -122,10 +122,10 @@
                             </svg>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="courseDropdown2{{ $property->id }}">
-                            <li><a class="dropdown-item" href="#">Publish</a></li>
-                            <li><a class="dropdown-item" href="#">Relist</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Publish</a></li> --}}
+                            {{-- <li><a class="dropdown-item" href="#">Relist</a></li> --}}
                             <li><a class="dropdown-item" href="{{ route('properties.edit', $property) }}">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Unlist</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Unlist</a></li> --}}
                             <li>
                                 <form action="{{ route('properties.destroy', $property) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this property?');">
                                     @csrf

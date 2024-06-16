@@ -30,6 +30,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('properties/{id}/check', [BookingController::class, 'checkAvailability'])->name('bookings.check');
 Route::post('properties/{id}/book', [BookingController::class, 'store'])->name('bookings.store');
+Route::get('/', [PropertyController::class, 'showRandomProperties'])->name('home');
 
 Route::prefix('/')->group(function(){
 
@@ -38,6 +39,11 @@ Route::prefix('/')->group(function(){
         Route::post('/register', [UserLoginController::class, 'register'])->name('register'); 
         Route::get('/login', [UserLoginController::class, 'index']); 
         Route::post('/login', [UserLoginController::class, 'login'])->name('login');
+        
+
+        //Agent Register
+        Route::get('/agent/register', [UserLoginController::class, 'registerFormAgent'])->name('registerFormAgent'); 
+        Route::post('/agent/register', [UserLoginController::class, 'registerAgent'])->name('registerAgent'); 
     });
     
     Route::middleware(['auth', UserMiddleware::class])->group(function(){
@@ -50,7 +56,7 @@ Route::prefix('/')->group(function(){
     //Agent
     Route::middleware(['auth', AgentMiddleware::class])->group(function(){
            Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
-        });
+    });
 });
 
 //Admin
@@ -65,7 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth', AdminMiddleware::class])->group(function(){ //make sure the authenticated user is admin
         Route::get('/home', [AdminHomeController::class, 'index'])->name('home'); 
 
-        // PropertyType Routes
+    // PropertyType Routes
     Route::resource('property-types', PropertyTypeController::class);
 
     // State Routes

@@ -14,6 +14,7 @@
                 <p><strong>Date:</strong> {{ $booking->date }}</p>
                 <p><strong>Time:</strong> {{ $booking->time }}</p>
                 <p><strong>Status:</strong> {{ $booking->status }}</p>
+                <p><strong>Message:</strong> {{ $booking->message }}</p>
                 <form action="{{ route('bookings.updateStatus', $booking->id) }}" method="POST">
                     @csrf
                     <div class="form-group">

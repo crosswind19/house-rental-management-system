@@ -103,6 +103,7 @@
               </form>
               <div class="mt-3">
                 <p class="mb-0">Already have an account? <span class="ml-3"><a href="{{ route('login')}}">Login</a></span></p>
+                <p class="mb-0">Are you an agent? <span class="ml-3"><a href="/agent/register">Register</a></span></p>
               </div>
 
             </div>

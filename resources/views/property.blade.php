@@ -3,6 +3,7 @@
 @section('title', 'Property - ' . config('app.name'))
 
 @section('content')
+
 <!-- listing slide -->
 <div class="container pt-5 mt-5">
     <div class="ratio ratio-16x9 rounded-3" style="background-image: url('{{ Storage::url(json_decode($property->photo)[0]) }}'); background-size: cover; background-position: center;">        
@@ -172,70 +173,7 @@
                     </div>
                     <!-- listing detail -->
                 </div> --}}
-                <!-- listing detail -->
-                <!-- listing detail -->
-                {{-- <div class="card mb-4 ">
-                    <div class="card-body p-4">
-                        <h4 class="mb-3">Leave Your Review</h4>
-                        <form class="row">
-                            <div class="mb-3 col-6">
-                                <label for="reviewtitle" class="form-label">Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control" id="reviewname" aria-describedby="reviewname" placeholder="John Deo" required="">
-                            </div>
-                            <div class="mb-3 col-6">
-                                <label for="reviewemail" class="form-label"> Email <span class="text-danger">*</span></label>
-                                <input type="email" name="email" class="form-control" id="reviewemail" aria-describedby="reviewemail" placeholder="Enter email" required="">
-                            </div>
-                            <div class="mb-3 col-12">
-                                <label for="reviewtitle" class="form-label">Review Title <span class="text-danger">*</span></label>
-                                <input type="text" name="title" class="form-control" id="reviewtitle" aria-describedby="reviewtitle" placeholder="Write Review Title" required="">
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <h5>Reviews</h5>
-                            </div>
-                            <div class="col-md-5 review-total mb-2">
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Atmosphere</span></div>
-                                    <div><span id="ratingstar1" class="rating-star-img"></span></div>
-                                </div>
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Security</span></div>
-                                    <div><span id="ratingstar2" class="rating-star-img"></span></div>
-                                </div>
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Location</span></div>
-                                    <div><span id="ratingstar3" class="rating-star-img"></span></div>
-                                </div>
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Facilities</span> </div>
-                                    <div><span id="ratingstar4" class="rating-star-img"></span></div>
-                                </div>
-                            </div>
-                            <div class="offset-md-1 col-md-5 review-total">
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Staff</span></div>
-                                    <div><span id="ratingstar5" class="rating-star-img"></span></div>
-                                </div>
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Cleanliness</span></div>
-                                    <div><span id="ratingstar6" class="rating-star-img"></span></div>
-                                </div>
-                                <div class="d-flex justify-content-between text-sm">
-                                    <div><span>Value of money</span></div>
-                                    <div><span id="ratingstar7" class="rating-star-img"></span></div>
-                                </div>
-                            </div>
-                            <div class="mb-3 col-12 mt-3">
-                                <label for="reviewdescription" class="form-label">Write Your Experience</label>
-                                <textarea class="form-control" id="reviewdescription" rows="3"></textarea>
-                            </div>
-                            <div class="d-lg-flex justify-content-between align-items-center">
-                                <button type="submit" class="btn btn-primary">Submit Review</button>
-                                <small class="ms-2"><span class="text-danger">*</span> Required Filed</small>
-                            </div>
-                        </form>
-                    </div>
-                </div> --}}
+               
                 <div class="card mb-4" id="gallery">
                     <div class="card-body p-4">
                         <h4 class="mb-4">Gallery</h4>
@@ -330,6 +268,12 @@
                                             <button class="btn btn-primary" type="submit">Check Availability</button>
                                         </div>
                                     </form>
+                                    <!-- Success Message -->
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
                                     @if(session('availability'))
                                         @if(session('availability') == 'available')
                                             <div class="alert alert-success mt-3">The slot is available!</div>
@@ -337,6 +281,10 @@
                                                 @csrf
                                                 <input type="hidden" name="date" value="{{ session('date') }}">
                                                 <input type="hidden" name="time" value="{{ session('time') }}">
+                                                <div class="mb-3">
+                                                    <label for="message" class="form-label">Message</label>
+                                                    <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                                                </div>
                                                 <button class="btn btn-success mt-2" type="submit">Register Booking for {{session('date')}}, {{session('time')}}</button>
                                             </form>
                                         @elseif(session('availability') == 'unavailable')
@@ -419,8 +367,7 @@
                         <span class="badge bg-danger position-absolute start-0 ms-3 mt-3 top-0 z-1">Featured</span>
                     </div>
                     <div class="mt-3">
-                        <h4 class="mb-0"> <a href="list-single.html" class="text-inherit">Beautiful Cozy
-            Home</a></h4>
+                        <h4 class="mb-0"> <a href="list-single.html" class="text-inherit">Beautiful Cozy Home</a></h4>
                         <p class="text-sm font-weight-semi-bold">Udaipur, Rajasthan, India</p>
                         <div class="d-flex justify-content-between mt-3">
                             <div>

@@ -190,4 +190,10 @@ class PropertyController extends Controller
         }
     }
 
+    public function showRandomProperties()
+    {
+        $properties = Property::inRandomOrder()->take(3)->get();
+        return view('home', compact('properties'));
+    }
+
 }
