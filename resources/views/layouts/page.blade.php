@@ -94,7 +94,7 @@
                                 <a class="nav-link dropdown-toggle pe-3" href="" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <span>Welcome, {{ Auth::user()->name }}</span></a>
                                 <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                                    <li><a class="dropdown-item" href="./index.html">My Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('profile.show', Auth::user())}}">My Profile</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                       @csrf
                                     </form>

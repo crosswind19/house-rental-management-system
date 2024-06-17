@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AgentMiddleware;
 use App\Http\Controllers\BookingController;
@@ -51,6 +52,9 @@ Route::prefix('/')->group(function(){
        Route::get('/agent', [HomeController::class, 'agent'])->name('agent');
        Route::get('/property', [PropertyController::class, 'properties'])->name('properties');
        Route::get('/property/{id}', [PropertyController::class, 'property'])->name('property');
+       Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile.show');
+       Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
+       Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
     });
 
     //Agent
