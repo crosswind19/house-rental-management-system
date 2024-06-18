@@ -33,141 +33,127 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- card -->
-                <div class=" position-sticky overflow-hidden h-auto top-0">
+                <div class="position-sticky overflow-hidden h-auto top-0">
                     <div class="card mb-3">
-                        <h4 class="card-header bg-white px-4 py-3"><span class="text-primary me-2"><i class="mdi mdi-tune"></i></span>Filter
-                        </h4>
-                        <!-- filter widget -->
+                        <h4 class="card-header bg-white px-4 py-3"><span class="text-primary me-2"><i class="mdi mdi-tune"></i></span>Filter</h4>
+                        
+                        <form action="{{ route('properties') }}" method="GET">
+                            <!-- filter widget -->
+                            <div class="card-body p-4 border-bottom">
+                                <h5>Property Type</h5>
+                                <div class="mt-3">
+                                    @foreach($propertyTypes as $propertyType)
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="propertyType{{ $propertyType->id }}" name="property_type_id" value="{{ $propertyType->id }}" {{ request('property_type_id') == $propertyType->id ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="propertyType{{ $propertyType->id }}">{{ $propertyType->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- filter widget -->
+                            <div class="card-body p-4 border-bottom">
+                                <h5>State</h5>
+                                <div class="mt-3">
+                                    @foreach($states as $state)
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="state{{ $state->id }}" name="state_id" value="{{ $state->id }}" {{ request('state_id') == $state->id ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="state{{ $state->id }}">{{ $state->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Bedroom Filter -->
                         <div class="card-body p-4 border-bottom">
-                            <h5>Review Rating</h5>
+                            <h5>Bedrooms</h5>
                             <div class="mt-3">
-                                <!-- radio -->
-                                <div class="form-check text-primary">
-                                    <input type="radio" id="customRadio1" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio1"><span class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> <span class="mdi mdi-star"></span>
-              <span class="mdi mdi-star "></span></label>
-                                </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio2" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio2"><span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span>
-            </label>
-                                </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio3" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio3"><span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span> <span class="mdi mdi-star"></span> </label>
-                                </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio4" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio4"><span class="mdi mdi-star"></span> <span
-                class="mdi mdi-star"></span> </label>
-                                </div>
-                                <!-- radio -->
-                                <div class="form-check custom-radio text-primary">
-                                    <input type="radio" id="customRadio5" name="customRadio" class="form-check-input">
-                                    <label class="form-check-label" for="customRadio5"><span class="mdi mdi-star"></span> </label>
-                                </div>
+                                @for($i = 1; $i <= 5; $i++)
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="bedrooms{{ $i }}" name="bedrooms" value="{{ $i }}" {{ request('bedrooms') == $i ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="bedrooms{{ $i }}">{{ $i }}</label>
+                                    </div>
+                                @endfor
                             </div>
                         </div>
-                        <!-- filter widget -->
-
+                        
+                        <!-- Bathroom Filter -->
                         <div class="card-body p-4 border-bottom">
-                            <h5 class="mb-4"> Pricing </h5>
-                            <div class="price-menu-body mt-6">
-                                <div id="slider-padding"></div>
-                            </div>
-
-                        </div>
-                        <!-- filter widget -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Amenities </h5>
+                            <h5>Bathrooms</h5>
                             <div class="mt-3">
-                                <!-- checkbox -->
+                                @for($i = 1; $i <= 5; $i++)
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="bathrooms{{ $i }}" name="bathrooms" value="{{ $i }}" {{ request('bathrooms') == $i ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="bathrooms{{ $i }}">{{ $i }}</label>
+                                    </div>
+                                @endfor
+                            </div>
+                        </div>
+                        
+                        <!-- Car Park Filter -->
+                        <div class="card-body p-4 border-bottom">
+                            <h5>Car Parks</h5>
+                            <div class="mt-3">
+                                @for($i = 0; $i <= 5; $i++)
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="carPark{{ $i }}" name="car_park" value="{{ $i }}" {{ request('car_park') == $i ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="carPark{{ $i }}">{{ $i }}</label>
+                                    </div>
+                                @endfor
+                            </div>
+                        </div>
+                        
+                        <!-- Furnishing Filter -->
+                        <div class="card-body p-4 border-bottom">
+                            <h5>Furnishing</h5>
+                            <div class="mt-3">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck1">
-                                    <label class="form-check-label" for="customCheck1">Doorman
-            </label>
+                                    <input type="radio" class="form-check-input" id="furnishingFullyFurnished" name="furnishing" value="Fully Furnished" {{ request('furnishing') == 'Fully Furnished' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="furnishingFullyFurnished">Fully Furnished</label>
                                 </div>
-                                <!-- checkbox -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck2">
-                                    <label class="form-check-label" for="customCheck2">Free parking
-            </label>
+                                    <input type="radio" class="form-check-input" id="furnishingPartialFurnish" name="furnishing" value="Partial Furnish" {{ request('furnishing') == 'Partial Furnish' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="furnishingPartialFurnish">Partial Furnish</label>
                                 </div>
-                                <!-- checkbox -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck3">
-                                    <label class="form-check-label" for="customCheck3">Heating
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck4">
-                                    <label class="form-check-label" for="customCheck4">Hair dryer
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck5">
-                                    <label class="form-check-label" for="customCheck5">Toiletteries </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck6">
-                                    <label class="form-check-label" for="customCheck6">Pool
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck7">
-                                    <label class="form-check-label" for="customCheck7">Wifi
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck8">
-                                    <label class="form-check-label" for="customCheck8">Washing machine
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck9">
-                                    <label class="form-check-label" for="customCheck9">Indoor fireplace
-            </label>
-                                </div>
-                                <!-- checkbox -->
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck10">
-                                    <label class="form-check-label" for="customCheck10">Desk for work
-            </label>
+                                    <input type="radio" class="form-check-input" id="furnishingNoFurnish" name="furnishing" value="No Furnish" {{ request('furnishing') == 'No Furnish' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="furnishingNoFurnish">No Furnish</label>
                                 </div>
                             </div>
                         </div>
-                        <!-- filter widget -->
-                        <!-- search -->
-                        <div class="card-body p-4">
-                            <a href="#" class="btn btn-primary btn-block">Search</a>
+                        
+                        <!-- Price Filter -->
+                        <div class="card-body p-4 border-bottom">
+                            <h5>Price Range</h5>
+                            <div class="mt-3">
+                                <div class="form-group">
+                                    <label for="price_min">Min Price</label>
+                                    <input type="number" class="form-control" id="price_min" name="price_min" value="{{ request('price_min') }}">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="price_max">Max Price</label>
+                                    <input type="number" class="form-control" id="price_max" name="price_max" value="{{ request('price_max') }}">
+                                </div>
+                            </div>
                         </div>
-                        <!-- filter widget -->
+                            <!-- search -->
+                            <div class="card-body p-4">
+                                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-9 col-md-8  col-12">
                 <div class="row mb-4">
                     <div class="col-lg-3 col-md-4 col-8">
                         <div class="sorting">
                             <!-- select form -->
                             <select class="select2">
-            <option selected>Default</option>
-            <option value="1">Most Viewed</option>
-            <option value="2">Newest Listing</option>
-            <option value="3">Older Listing</option>
-          </select>
+                                <option selected>Default</option>
+                                <option value="1">Most Viewed</option>
+                                <option value="2">Newest Listing</option>
+                                <option value="3">Older Listing</option>
+                            </select>
                         </div>
                         <!-- select form -->
                     </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,8 +30,22 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('profile_picture')) {
-            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $user->profile_picture = $path;
+            // Delete the old profile picture if it exists
+            if ($user->profile_picture) {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
+
+            $data['profile_picture'] = $request->file('profile_picture')->store('profile','public');
+
+            // Store the new profile picture
+            // try {
+            //     $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            //     $user->profile_picture = $path;
+            // } catch (\Exception $e) {
+            //     Log::error('File upload error: ' . $e->getMessage());
+            //     return back()->withErrors('An error occurred while uploading the profile picture. Please try again.');
+            // }
+           
         }
 
         $user->update($data);

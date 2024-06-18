@@ -12,7 +12,9 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{ $user->profile_picture ? Storage::url($user->profile_picture) : asset('assets/images/default-profile.png') }}" alt="{{ $user->name }}" class="img-fluid rounded-circle">
+                    <div class="pb-1 h-75">
+                        <img class="img-fluid bg-cover h-100" src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('images/profilepic/default-profile.png') }}" alt="Profile Picture">
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <h4>Name: {{ $user->name }}</h4>

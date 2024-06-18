@@ -45,11 +45,24 @@ class PropertyController extends Controller
         return view('properties.dashboard', compact('properties', 'user', 'layout', 'propertyTypes', 'states'));
     }
 
-    public function properties()
+    public function properties(Request $request)
     {
         // $user = auth()->user();
-        $properties = Property::all();
-            return view('properties', compact('properties'));
+        $query = Property::query();
+
+        if ($request->filled('property_type_id')) {
+            $query->where('property_type_id', $request->property_type_id);
+        }
+
+        if ($request->filled('state_id')) {
+            $query->where('state_id', $request->state_id);
+        }
+
+        $properties = $query->get();
+        $propertyTypes = PropertyType::all();
+        $states = State::all();
+
+        return view('properties', compact('properties', 'propertyTypes', 'states'));
     }
 
     public function property($id)
