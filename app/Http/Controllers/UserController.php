@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     public function show(User $user)
     {
-        return view('profile.show', compact('user'));
+        $user = Auth::user();
+        $bookings = Booking::where('user_id', $user->id)->with('property')->get();
+
+        return view('profile.show', compact('user', 'bookings'));
     }
 
     public function edit(User $user)

@@ -120,4 +120,6 @@ class BookingController extends Controller
 
         return view('bookings.tenant', compact('bookings'));
     }
+
+    
 }

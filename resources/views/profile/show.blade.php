@@ -31,6 +31,39 @@
                 </div>
             </div>
         </div>
+
+        
+        
+    </div>
+    <div class="card mt-3">
+        <div class="card-header">
+            <h2>My Bookings</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($bookings as $booking)
+                        <tr>
+                            <td>{{ $booking->property->property_name }}</td>
+                            <td>{{ $booking->date }}</td>
+                            <td>{{ $booking->time }}</td>
+                            <td>{{ ucfirst($booking->status) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
