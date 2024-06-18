@@ -35,13 +35,15 @@
                 <!-- card -->
                 <div class="position-sticky overflow-hidden h-auto top-0">
                     <div class="card mb-3">
-                        <h4 class="card-header bg-white px-4 py-3"><span class="text-primary me-2"><i class="mdi mdi-tune"></i></span>Filter</h4>
+                        <h4 class="card-header bg-white px-4 py-3">
+                            <span class="text-primary me-2"><i class="mdi mdi-tune"></i></span>Filter
+                        </h4>
                         
                         <form action="{{ route('properties') }}" method="GET">
-                            <!-- filter widget -->
+                            <!-- Property Type Filter -->
                             <div class="card-body p-4 border-bottom">
-                                <h5>Property Type</h5>
-                                <div class="mt-3">
+                                <h5 data-bs-toggle="collapse" href="#propertyTypeCollapse" role="button" aria-expanded="true" aria-controls="propertyTypeCollapse">Property Type</h5>
+                                <div class="collapse" id="propertyTypeCollapse">
                                     @foreach($propertyTypes as $propertyType)
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" id="propertyType{{ $propertyType->id }}" name="property_type_id" value="{{ $propertyType->id }}" {{ request('property_type_id') == $propertyType->id ? 'checked' : '' }}>
@@ -50,10 +52,11 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <!-- filter widget -->
+    
+                            <!-- State Filter -->
                             <div class="card-body p-4 border-bottom">
-                                <h5>State</h5>
-                                <div class="mt-3">
+                                <h5 data-bs-toggle="collapse" href="#stateCollapse" role="button" aria-expanded="true" aria-controls="stateCollapse">State</h5>
+                                <div class="collapse" id="stateCollapse">
                                     @foreach($states as $state)
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" id="state{{ $state->id }}" name="state_id" value="{{ $state->id }}" {{ request('state_id') == $state->id ? 'checked' : '' }}>
@@ -62,80 +65,87 @@
                                     @endforeach
                                 </div>
                             </div>
+    
                             <!-- Bedroom Filter -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Bedrooms</h5>
-                            <div class="mt-3">
-                                @for($i = 1; $i <= 5; $i++)
+                            <div class="card-body p-4 border-bottom">
+                                <h5 data-bs-toggle="collapse" href="#bedroomsCollapse" role="button" aria-expanded="true" aria-controls="bedroomsCollapse">Bedrooms</h5>
+                                <div class="collapse" id="bedroomsCollapse">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="bedrooms{{ $i }}" name="bedrooms" value="{{ $i }}" {{ request('bedrooms') == $i ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="bedrooms{{ $i }}">{{ $i }}</label>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+    
+                            <!-- Bathroom Filter -->
+                            <div class="card-body p-4 border-bottom">
+                                <h5 data-bs-toggle="collapse" href="#bathroomsCollapse" role="button" aria-expanded="true" aria-controls="bathroomsCollapse">Bathrooms</h5>
+                                <div class="collapse" id="bathroomsCollapse">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="bathrooms{{ $i }}" name="bathrooms" value="{{ $i }}" {{ request('bathrooms') == $i ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="bathrooms{{ $i }}">{{ $i }}</label>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+    
+                            <!-- Car Park Filter -->
+                            <div class="card-body p-4 border-bottom">
+                                <h5 data-bs-toggle="collapse" href="#carParkCollapse" role="button" aria-expanded="true" aria-controls="carParkCollapse">Car Parks</h5>
+                                <div class="collapse" id="carParkCollapse">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="carPark{{ $i }}" name="car_park" value="{{ $i }}" {{ request('car_park') == $i ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="carPark{{ $i }}">{{ $i }}</label>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+    
+                            <!-- Furnishing Filter -->
+                            <div class="card-body p-4 border-bottom">
+                                <h5 data-bs-toggle="collapse" href="#furnishingCollapse" role="button" aria-expanded="true" aria-controls="furnishingCollapse">Furnishing</h5>
+                                <div class="collapse" id="furnishingCollapse">
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="bedrooms{{ $i }}" name="bedrooms" value="{{ $i }}" {{ request('bedrooms') == $i ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="bedrooms{{ $i }}">{{ $i }}</label>
+                                        <input type="radio" class="form-check-input" id="furnishingFullyFurnished" name="furnishing" value="Fully Furnished" {{ request('furnishing') == 'Fully Furnished' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="furnishingFullyFurnished">Fully Furnished</label>
                                     </div>
-                                @endfor
-                            </div>
-                        </div>
-                        
-                        <!-- Bathroom Filter -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Bathrooms</h5>
-                            <div class="mt-3">
-                                @for($i = 1; $i <= 5; $i++)
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="bathrooms{{ $i }}" name="bathrooms" value="{{ $i }}" {{ request('bathrooms') == $i ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="bathrooms{{ $i }}">{{ $i }}</label>
+                                        <input type="radio" class="form-check-input" id="furnishingPartialFurnish" name="furnishing" value="Partial Furnish" {{ request('furnishing') == 'Partial Furnish' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="furnishingPartialFurnish">Partial Furnish</label>
                                     </div>
-                                @endfor
-                            </div>
-                        </div>
-                        
-                        <!-- Car Park Filter -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Car Parks</h5>
-                            <div class="mt-3">
-                                @for($i = 0; $i <= 5; $i++)
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="carPark{{ $i }}" name="car_park" value="{{ $i }}" {{ request('car_park') == $i ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="carPark{{ $i }}">{{ $i }}</label>
+                                        <input type="radio" class="form-check-input" id="furnishingNoFurnish" name="furnishing" value="No Furnish" {{ request('furnishing') == 'No Furnish' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="furnishingNoFurnish">No Furnish</label>
                                     </div>
-                                @endfor
-                            </div>
-                        </div>
-                        
-                        <!-- Furnishing Filter -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Furnishing</h5>
-                            <div class="mt-3">
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="furnishingFullyFurnished" name="furnishing" value="Fully Furnished" {{ request('furnishing') == 'Fully Furnished' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="furnishingFullyFurnished">Fully Furnished</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="furnishingPartialFurnish" name="furnishing" value="Partial Furnish" {{ request('furnishing') == 'Partial Furnish' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="furnishingPartialFurnish">Partial Furnish</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="furnishingNoFurnish" name="furnishing" value="No Furnish" {{ request('furnishing') == 'No Furnish' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="furnishingNoFurnish">No Furnish</label>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Price Filter -->
-                        <div class="card-body p-4 border-bottom">
-                            <h5>Price Range</h5>
-                            <div class="mt-3">
-                                <div class="form-group">
-                                    <label for="price_min">Min Price</label>
-                                    <input type="number" class="form-control" id="price_min" name="price_min" value="{{ request('price_min') }}">
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label for="price_max">Max Price</label>
-                                    <input type="number" class="form-control" id="price_max" name="price_max" value="{{ request('price_max') }}">
+    
+                            <!-- Price Filter -->
+                            <div class="card-body p-4 border-bottom">
+                                <h5 data-bs-toggle="collapse" href="#priceCollapse" role="button" aria-expanded="true" aria-controls="priceCollapse">Price Range</h5>
+                                <div class="collapse" id="priceCollapse">
+                                    <div class="form-group">
+                                        <label for="price_min">Min Price</label>
+                                        <input type="number" class="form-control" id="price_min" name="price_min" value="{{ request('price_min') }}">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="price_max">Max Price</label>
+                                        <input type="number" class="form-control" id="price_max" name="price_max" value="{{ request('price_max') }}">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                            <!-- search -->
-                            <div class="card-body p-4">
+
+                            <!-- Clear Filter Button -->
+                            <div class="card-body px-3">
+                                <a href="{{ route('properties') }}" class="btn btn-secondary btn-block">Clear Filter</a>
+                            </div>
+    
+                            <!-- Search Button -->
+                            <div class="card-body px-3">
                                 <button type="submit" class="btn btn-primary btn-block">Search</button>
                             </div>
                         </form>

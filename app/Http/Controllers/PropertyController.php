@@ -47,7 +47,6 @@ class PropertyController extends Controller
 
     public function properties(Request $request)
     {
-        // $user = auth()->user();
         $query = Property::query();
 
         if ($request->filled('property_type_id')) {
@@ -56,6 +55,30 @@ class PropertyController extends Controller
 
         if ($request->filled('state_id')) {
             $query->where('state_id', $request->state_id);
+        }
+
+        if ($request->filled('bedrooms')) {
+            $query->where('bedroom', $request->bedrooms);
+        }
+
+        if ($request->filled('bathrooms')) {
+            $query->where('bathroom', $request->bathrooms);
+        }
+
+        if ($request->filled('car_park')) {
+            $query->where('car_park', $request->car_park);
+        }
+
+        if ($request->filled('furnishing')) {
+            $query->where('furnishing', $request->furnishing);
+        }
+
+        if ($request->filled('price_min')) {
+            $query->where('price', '>=', $request->price_min);
+        }
+
+        if ($request->filled('price_max')) {
+            $query->where('price', '<=', $request->price_max);
         }
 
         $properties = $query->get();
