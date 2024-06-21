@@ -158,7 +158,7 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="bedroom" class="form-label">Bedroom</label>
-                                    <input type="text" class="form-control @error('bedroom') is-invalid @enderror" id="bedroom" placeholder="e.g 57000"
+                                    <input type="text" class="form-control @error('bedroom') is-invalid @enderror" id="bedroom" placeholder="3"
                                         name="bedroom" value="{{ old('bedroom') }}" required>
                                     @error('bedroom')
                                         <span class="invalid-feedback" role="alert">
@@ -171,7 +171,7 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="bathroom" class="form-label">Bathroom</label>
-                                    <input type="text" class="form-control @error('bathroom') is-invalid @enderror" id="bathroom" placeholder="e.g 57000"
+                                    <input type="text" class="form-control @error('bathroom') is-invalid @enderror" id="bathroom" placeholder="3"
                                         name="bathroom" value="{{ old('bathroom') }}" required>
                                     @error('bathroom')
                                         <span class="invalid-feedback" role="alert">
@@ -184,7 +184,7 @@
                             <div class="col-md-4 col-12">
                                 <div class="mb-3">
                                     <label for="car_park" class="form-label">Car Park</label>
-                                    <input type="text" class="form-control @error('car_park') is-invalid @enderror" id="car_park" placeholder="e.g 57000"
+                                    <input type="text" class="form-control @error('car_park') is-invalid @enderror" id="car_park" placeholder="2"
                                         name="car_park" value="{{ old('car_park') }}" required>
                                     @error('car_park')
                                         <span class="invalid-feedback" role="alert">

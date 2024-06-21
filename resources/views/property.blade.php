@@ -183,7 +183,7 @@
                                     @foreach(json_decode($property->photo) as $photo)
                                         <div class="col-md-4">
                                             <a href="{{ Storage::url($photo) }}" title="Property Photo">
-                                                <img src="{{ Storage::url($photo) }}" class="img-fluid rounded-3 mb-4" alt="Property Photo">
+                                                <img src="{{ Storage::url($photo) }}" class="img-fluid rounded-3 mb-4 fixed-height" alt="Property Photo">
                                             </a>
                                         </div>
                                     @endforeach
@@ -469,6 +469,14 @@
         </div>
     </div>
 </div>
+
+<style>
+    .fixed-height {
+        height: 200px; /* Set your desired height */
+        width: 100%;
+        object-fit: cover; /* Ensures the image covers the area without distortion */
+    }
+</style>
 
 <script>
     
