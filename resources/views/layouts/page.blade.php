@@ -7,14 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Rentkit - Directory & Listings Bootstrap 5 Template.">
 
-
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
 
-
   <!-- Libs CSS -->
-
   <link href="{{ asset('assets/libs/magnific-popup/dist/magnific-popup.css') }}" rel="stylesheet" />
   <link href="{{ asset('assets/libs/animate.css/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/libs/nouislider/dist/nouislider.min.css') }}" rel="stylesheet">
@@ -24,12 +21,12 @@
   <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
-
+  
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
   {{-- <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet"> --}}
-  <title>Homepage - Rentkit - Directory & Listings Bootstrap 5 Template.</title>
+  <title>@yield('title', config('app.name'))</title>
 </head>
 
 <body class="">
@@ -47,7 +44,7 @@
           <div class="row">
               <div class="col-md-12">
                   <nav class="navbar navbar-expand-lg">
-                      <a class="navbar-brand" href="{{route('home')}}"> <img src="./assets/images/logo.svg" alt="Rentkit Directory & Listing Bootstrap 5 Theme"></a>
+                      <a class="navbar-brand" href="{{route('home')}}"> <img src="{{ asset('assets/images/logo.svg')}}" alt="Rentkit Directory & Listing Bootstrap 5 Theme"></a>
                       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -75,6 +72,7 @@
                                   
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{ route('properties.index') }}" id="blogDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Property Type</a>
+                                
                                 <ul class="dropdown-menu" aria-labelledby="blogDropdown">
                                     <li><a href="./pages/blog.html" class="dropdown-item">Apartment</a></li>
                                     <li><a href="./pages/blog-author.html" class="dropdown-item">Author</a></li>
@@ -92,15 +90,17 @@
                           </ul>
 
                           @if (Auth::check() && (Auth::user()->roles == 3))
-                                <a class="nav-link dropdown-toggle pe-3" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <li class="nav-item dropdown text-decoration-none">
+                                <a class="nav-link dropdown-toggle pe-3" href="" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <span>Welcome, {{ Auth::user()->name }}</span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="./index.html">My Profile</a></li>
+                                <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('profile.show', Auth::user())}}">My Profile</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                       @csrf
                                     </form>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                                 </ul>
+                              </li>
                               <a href="{{ route('dashboard')}}" class="btn btn-primary d-none d-lg-block">Dashboard</a>
                           @else
                           {{-- <a href="./pages/add-listing.html" class="btn btn-secondary d-none d-lg-block me-2">Rent Out Area</a> --}}
@@ -229,8 +229,44 @@
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
 
+  @yield('js')
   <!-- Theme JS -->
   <script src="{{ asset('assets/js/theme.min.js')}}"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const hourSelect = document.getElementById('hour-select');
+            const minuteSelect = document.getElementById('minute-select');
+
+            // Populate hour select options
+            for (let i = 10; i <= 21; i++) {
+                const option = document.createElement('option');
+                option.value = String(i).padStart(2, '0');
+                option.textContent = String(i).padStart(2, '0');
+                hourSelect.appendChild(option);
+            }
+
+            // Set the selected values if they exist
+            const oldHour = "{{ old('hour') }}";
+            const oldMinute = "{{ old('minute') }}";
+
+            if (oldHour) {
+                hourSelect.value = oldHour;
+            }
+            if (oldMinute) {
+                minuteSelect.value = oldMinute;
+            }
+        });
+
+        function combineTime() {
+            const hour = document.getElementById('hour-select').value;
+            const minute = document.getElementById('minute-select').value;
+            document.getElementById('time').value = `${hour}:${minute}`;
+        }
+  </script>

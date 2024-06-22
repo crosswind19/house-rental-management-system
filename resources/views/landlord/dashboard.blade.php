@@ -3,7 +3,6 @@
 @section('content')
 <!-- Main Content -->
 
-
     <!-- Begin Page Content -->
     <div class="container-fluid">
 

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', env('APP_NAME'))</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -16,19 +16,15 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-     <!-- Custom styles for this template-->
-     <link href="{{ asset('assets/libs/magnific-popup/dist/magnific-popup.css') }}" rel="stylesheet" />
-     <link href="{{ asset('assets/libs/animate.css/animate.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('assets/libs/nouislider/dist/nouislider.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('assets/libs/uppy/dist/uppy.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('assets/libs/litepicker/dist/css/litepicker.css') }}" rel="stylesheet">
-     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
-     <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+     <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
-     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-     
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+    <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -61,7 +57,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Listing
+                Landlord Area
             </div>
 
             <!-- Nav Item - Properties -->
@@ -69,6 +65,13 @@
                 <a class="nav-link" href="{{ route('properties.index')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Properties</span></a>
+            </li>
+
+            <!-- Nav Item - Booking -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('bookings.manage')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Booking</span></a>
             </li>
 
             <!-- Nav Item - Enquiries -->
@@ -83,7 +86,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Tenant Area
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -351,6 +354,10 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
+
+                        <li>
+                            <a href="{{ route('home')}}">Homepage</a>
+                        </li>
             
                         <div class="topbar-divider d-none d-sm-block"></div>
             
@@ -485,7 +492,9 @@
 
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

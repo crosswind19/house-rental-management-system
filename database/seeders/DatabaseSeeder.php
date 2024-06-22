@@ -36,6 +36,18 @@ class DatabaseSeeder extends Seeder
             'roles' => 1
         ]);
 
+        $this->call([
+            PropertyTypeSeeder::class,
+        ]);
+
+        $this->call([
+            StateSeeder::class,
+        ]);
+
+        $this->call([
+            PropertiesTableSeeder::class,
+        ]);
+
         
     }
 }

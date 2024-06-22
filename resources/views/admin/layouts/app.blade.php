@@ -18,7 +18,11 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    
+    
+    
 
 </head>
 
@@ -31,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.home')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -62,6 +66,27 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Properties</span></a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Property-Details
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.property-types.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Property Types</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.states.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>States</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
